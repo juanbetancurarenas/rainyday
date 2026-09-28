@@ -1,1 +1,46 @@
+name: Actualizar fondo
 
+on:
+  repository_dispatch:
+    types:
+      - actualizar-fondo
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Traer el repositorio
+        uses: actions/checkout@v4
+
+      - name: Escribir fondo.json
+        if: github.event_name == 'repository_dispatch'
+        env:
+          FONDO_B64: ${{ github.event.client_payload.fondo }}
+        run: |
+          if [ -z "$FONDO_B64" ]; then
+            echo "El dispatch llego sin el campo 'fondo'. No se escribe nada."
+            exit 1
+          fi
+          printf '%s' "$FONDO_B64" | base64 -d > fondo.json
+          head -c 300 fondo.json
+          echo
+
+      - name: Verificar que sea JSON valido
+        run: |
+          python3 -c "import json; d=json.load(open('fondo.json')); print('OK ->', d.get('fecha'), '| saldo:', d.get('fondo',{}).get('saldo'))"
+
+      - name: Commit y push
+        run: |
+          git config user.name  "Power Automate"
+          git config user.email "actions@users.noreply.github.com"
+          git add fondo.json
+          if git diff --staged --quiet; then
+            echo "El archivo no cambio. No hay nada que publicar."
+          else
+            git commit -m "Corte del ${{ github.event.client_payload.fecha || 'prueba manual' }}"
+            git push
+          fi
