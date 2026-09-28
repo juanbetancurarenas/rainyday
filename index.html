@@ -1,0 +1,1727 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rainy Day Fund — Portal de socios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F7F5F0; --paper-2:#F2EFE8; --panel:#FCFBF7;
+  --ink:#141B23; --ink-2:#3C4450; --ink-3:#6B6A64; --ink-4:#8B8880;
+  --navy:#0D3B70; --navy-2:#2A4058; --navy-3:#41566E; --navy-4:#9EAAB8;
+  --green:#2E7D55; --green-bg:#E4EFE7; --blue:#0D3B70;
+  --tan:#C8823A; --tan-ink:#8A5A20; --tan-bg:#F3EADA;
+  --rust:#A8452C;
+  --bg:#F7F5F0; --card:transparent; --line:#D8D3C9; --line-2:#E5E0D6;
+  --serif:Spectral,Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans","Helvetica Neue",Helvetica,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:14.5px/1.62 var(--sans);
+  font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:0 28px}
+button{font:inherit;cursor:pointer}
+b,strong{font-weight:600}
+
+/* ---------- cabecera ---------- */
+.top{background:var(--paper);border-bottom:2px solid var(--navy)}
+.top .wrap{display:flex;align-items:flex-end;gap:16px;padding-top:30px;padding-bottom:14px}
+.brand{font-family:var(--serif);font-weight:500;font-size:29px;letter-spacing:-.01em;
+  color:var(--navy);line-height:1.05;display:flex;flex-direction:column-reverse}
+.brand small{font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:400;margin-bottom:6px}
+.spacer{flex:1}
+.who{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--ink-3);padding-bottom:4px}
+.ava{width:30px;height:30px;background:var(--paper-2);border:1px solid var(--line);
+  color:var(--navy);display:grid;place-items:center;font-size:11.5px;font-weight:600;flex:none}
+
+/* ---------- navegación ---------- */
+nav{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+nav .wrap{display:flex;gap:30px;overflow-x:auto;scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+nav button{background:none;border:0;padding:15px 0 12px;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);border-bottom:2px solid transparent;
+  white-space:nowrap;font-weight:500}
+nav button:hover{color:var(--navy)}
+nav button[aria-current="page"]{color:var(--navy);border-bottom-color:var(--navy);font-weight:600}
+
+main{padding:10px 0 70px}
+.view{display:none} .view.on{display:block}
+
+/* ---------- avisos ---------- */
+.demo{background:var(--paper-2);border:0;border-left:3px solid var(--tan-ink);border-radius:0;
+  padding:13px 18px;font-size:13px;color:var(--ink-2);margin:22px 0 4px;
+  display:flex;gap:18px;align-items:flex-start;justify-content:space-between}
+.demo b{color:var(--ink)}
+.demo #banner-txt{flex:1}
+.demo button{flex:none;border:1px solid var(--line);background:var(--paper);color:var(--ink-2);
+  border-radius:0;padding:8px 13px;font:inherit;font-size:12px;white-space:nowrap}
+.demo button:hover{border-color:var(--navy);color:var(--navy)}
+.demo.ej{background:#F5E9D6;border-left-color:var(--tan-ink)}
+
+/* ---------- bloques ---------- */
+.card{background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;
+  padding:26px 0 4px}
+.card + .card{margin-top:22px}
+.grid{display:grid;gap:0}
+.g2{grid-template-columns:1fr 1fr;gap:0 48px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0}
+.g4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0}
+.grid > .card{margin-top:0;padding:18px 26px 18px 0;border-top:1px solid var(--ink)}
+.grid > .card + .card{margin-top:0;padding-left:26px;border-left:1px solid var(--line-2)}
+
+h2{font-family:var(--serif);font-size:24px;margin:0 0 4px;font-weight:500;letter-spacing:-.01em}
+.sect{margin:34px 0 10px}
+.sect h2{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600}
+h3{font-family:var(--serif);font-size:21px;margin:0 0 6px;font-weight:500;letter-spacing:-.005em;
+  color:var(--ink)}
+.sub{font-size:13px;color:var(--ink-3);margin:0;line-height:1.7;max-width:92ch}
+.sub b{color:var(--ink-2)}
+
+/* ---------- saldo principal ---------- */
+.hero{background:transparent;border:0;border-top:2px solid var(--navy);border-radius:0;
+  overflow:visible;margin-top:22px}
+.hero .in{padding:30px 0 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:0 56px;align-items:start}
+.hero .lbl{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);
+  margin:0 0 14px;grid-column:1}
+.hero .big{grid-column:1;font-family:var(--serif);font-size:62px;font-weight:500;
+  letter-spacing:-.022em;color:var(--ink);line-height:1}
+.hero .alt{grid-column:1;font-size:15px;color:var(--ink-2);margin-top:12px}
+.hero .foot{background:transparent;border-top:1px solid var(--line);margin-top:26px;
+  padding:13px 0 0;font-size:12.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:6px 34px}
+.hero .foot b{color:var(--ink);font-weight:600}
+
+/* barra de avance */
+.prog{grid-column:2;grid-row:1 / span 4;align-self:center;margin-top:0}
+.prog .row{display:flex;justify-content:space-between;align-items:baseline;
+  font-size:12.5px;color:var(--ink-3);margin-bottom:12px}
+.prog .row b{font-family:var(--serif);color:var(--ink);font-size:26px;font-weight:500}
+.track{height:14px;background:#E8E3D9;border:1px solid var(--line);border-radius:0;
+  overflow:visible;position:relative}
+.fill{height:100%;background:var(--navy);border-radius:0;transition:width .6s ease}
+.mark{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--tan-ink)}
+.marklbl{font-size:11px;color:var(--tan-ink);margin-top:11px}
+
+/* ---------- cifras ---------- */
+.delta{display:flex;align-items:baseline;gap:9px}
+.delta .n{font-family:var(--serif);font-size:30px;font-weight:500;color:var(--green);
+  letter-spacing:-.02em}
+.up{display:inline-grid;place-items:center;width:19px;height:19px;border-radius:0;
+  background:var(--green-bg);color:var(--green);font-size:11px;font-weight:700;flex:none}
+.mini{font-size:12px;color:var(--ink-3);margin-top:5px;line-height:1.6}
+.stat{font-family:var(--serif);font-size:30px;font-weight:500;color:var(--ink);
+  letter-spacing:-.02em;margin-top:7px;line-height:1.1}
+.stat.g{color:var(--green)}
+
+/* semáforo */
+.sem{display:flex;align-items:center;gap:14px}
+.dot{width:11px;height:11px;border-radius:50%;flex:none}
+.dot.off{background:#C6C0B4} .dot.on{background:var(--green)}
+.pill{display:inline-block;padding:3px 11px;border-radius:0;font-size:11px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase}
+.pill.si{background:var(--green-bg);color:#1E5C3C}
+.pill.no{background:var(--paper-2);color:var(--ink-3)}
+
+/* ---------- gráficos ---------- */
+figure{margin:0}
+figcaption{font-size:13px;color:var(--ink-3);margin:0 0 20px;line-height:1.7;max-width:92ch}
+svg{display:block;width:100%;height:auto;overflow:visible}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:16px;font-size:12px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.sw{width:10px;height:10px;border-radius:0;flex:none}
+.sw.ln{height:3px;width:16px}
+.hit{fill:transparent;cursor:crosshair}
+
+/* ---------- tablas ---------- */
+.tw{overflow-x:auto;margin-top:18px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:10px 14px;text-align:right;border-bottom:1px solid var(--line-2)}
+th{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:600;border-bottom:1px solid var(--ink);white-space:nowrap;padding-bottom:9px}
+th:first-child,td:first-child{text-align:left;padding-left:0}
+th:last-child,td:last-child{padding-right:0}
+tbody tr:hover{background:var(--paper-2)}
+tfoot td{font-weight:600;border-top:2px solid var(--ink);border-bottom:0;color:var(--ink)}
+
+.acc summary{font-weight:600;color:var(--ink);font-size:13.5px}
+.acc .ln{display:flex;justify-content:space-between;gap:16px;padding:6px 0;
+  border-bottom:1px solid var(--line-2);font-size:12.5px}
+.acc .ln:last-child{border-bottom:0}
+.acc .ln span{color:var(--ink-2)}
+.acc .ln b{color:var(--ink);font-weight:600;white-space:nowrap}
+
+.resumen{font-family:var(--serif);font-size:19px;line-height:1.6;color:var(--ink);margin:0;
+  max-width:62ch}
+.resumen b{color:var(--navy);font-weight:600}
+.mapa{display:grid;gap:0;margin-top:10px}
+.mapa a{display:flex;gap:18px;align-items:baseline;padding:12px 0;text-decoration:none;
+  border-bottom:1px solid var(--line-2);color:var(--ink)}
+.mapa a:last-child{border-bottom:0}
+.mapa a:hover{color:var(--tan-ink)}
+.mapa .q{font-weight:600;font-size:14px;min-width:220px}
+.mapa .d{font-size:12.5px;color:var(--ink-3)}
+
+/* ---------- explicaciones ---------- */
+details.exp{margin-top:20px;border-top:1px solid var(--line-2);padding-top:13px}
+details.exp summary{font-size:12.5px;color:var(--tan-ink);list-style:none;display:flex;
+  align-items:center;gap:8px;cursor:pointer}
+details.exp summary::-webkit-details-marker{display:none}
+details.exp summary::before{content:"+";display:grid;place-items:center;width:16px;height:16px;
+  border:1px solid var(--tan-ink);color:var(--tan-ink);font-size:11px;font-weight:600;flex:none}
+details.exp[open] summary::before{content:"–"}
+details.exp p{font-size:13px;color:var(--ink-2);margin:12px 0 0;line-height:1.75;max-width:74ch}
+
+.vacio{padding:30px 18px;text-align:center;color:var(--ink-3);font-size:13px;
+  border:1px dashed var(--line);border-radius:0;line-height:1.7}
+
+/* ---------- movimientos ---------- */
+.mov{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--line-2)}
+.mov:last-child{border-bottom:0}
+.mov .ic{width:32px;height:32px;border-radius:0;background:var(--green-bg);color:var(--green);
+  display:grid;place-items:center;font-size:14px;font-weight:700;flex:none}
+.mov .ic.ini{background:var(--paper-2);color:var(--navy)}
+.mov .t{flex:1;min-width:0}
+.mov .t b{display:block;font-size:14px;font-weight:600}
+.mov .t span{font-size:12px;color:var(--ink-3)}
+.mov .v{text-align:right;flex:none}
+.mov .v b{display:block;font-family:var(--serif);font-size:17px;font-weight:500;color:var(--green)}
+.mov .v span{font-size:11.5px;color:var(--ink-3)}
+
+/* ---------- compañías ---------- */
+.co{display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--line-2)}
+.co:last-child{border-bottom:0}
+.co .nm{width:142px;flex:none;font-size:13px;font-weight:500}
+.co .bar{flex:1;height:14px;background:#E8E3D9;border-radius:0;overflow:hidden;min-width:60px}
+.co .bar i{display:block;height:100%;background:var(--navy);border-radius:0}
+.co .vv{width:178px;flex:none;text-align:right;font-size:12.5px;color:var(--ink-3)}
+.co .vv b{color:var(--ink);font-weight:600}
+
+/* ---------- bolsillos ---------- */
+.pk{border:0;border-top:1px solid var(--ink);border-radius:0;overflow:visible}
+.pk .hd{height:3px}
+.pk .in{padding:14px 0 0}
+.pk .or{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.pk h4{margin:6px 0 10px;font-family:var(--serif);font-size:17px;color:var(--navy);font-weight:500}
+.pk .v{font-family:var(--serif);font-size:22px;font-weight:500}
+.pk p{margin:10px 0 0;font-size:12.5px;color:var(--ink-2);line-height:1.6}
+.pk .tr{height:7px;background:#E8E3D9;border-radius:0;margin-top:12px;overflow:hidden}
+.pk .tr i{display:block;height:100%;border-radius:0}
+
+/* ---------- código ---------- */
+pre{background:#1B2530;color:#DCE4EC;border-radius:0;padding:16px;overflow-x:auto;
+  font:12px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;margin:14px 0 0}
+pre .k{color:#9ECBF0} pre .s{color:#AEDCBC} pre .c{color:#8A9AAA}
+code{background:var(--paper-2);padding:1px 6px;border-radius:0;
+  font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.steps{counter-reset:s;list-style:none;padding:0;margin:16px 0 0}
+.steps li{counter-increment:s;position:relative;padding-left:34px;margin-bottom:14px;
+  font-size:13px;color:var(--ink-2);line-height:1.7}
+.steps li::before{content:counter(s);position:absolute;left:0;top:1px;width:21px;height:21px;
+  border-radius:0;background:var(--navy);color:#fff;display:grid;place-items:center;
+  font-size:11px;font-weight:600}
+.steps b{color:var(--ink)}
+.note{font-size:13px;color:var(--ink-2);line-height:1.8}
+.note li{margin-bottom:9px}
+
+footer{border-top:1px solid var(--line);margin-top:52px;padding:18px 0 40px;
+  font-size:11px;color:var(--ink-4);display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;
+  letter-spacing:.02em}
+footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;padding:0;
+  text-decoration:underline}
+
+#tip{position:fixed;pointer-events:none;opacity:0;transition:opacity .09s;z-index:60;
+  background:var(--ink);color:#F7F5F0;border-radius:0;padding:10px 13px;font-size:12px;
+  line-height:1.55;box-shadow:0 6px 20px rgba(20,27,35,.22);max-width:270px}
+#tip .tt{font-weight:600;margin-bottom:5px}
+#tip .tr{display:flex;justify-content:space-between;gap:18px}
+#tip .tr i{font-style:normal;color:#ADB5BE}
+
+@media (max-width:900px){
+  .wrap{padding:0 20px}
+  .g4{grid-template-columns:1fr 1fr}
+  .g3,.g2{grid-template-columns:1fr}
+  .grid > .card + .card{padding-left:0;border-left:0}
+  .hero .in{grid-template-columns:1fr;gap:0}
+  .hero .big{font-size:42px}
+  .prog{grid-column:1;grid-row:auto;margin-top:30px}
+  .brand{font-size:23px}
+  .co .nm{width:110px;font-size:12px}
+  .co .vv{width:124px;font-size:11.5px}
+  nav .wrap{gap:20px}
+}
+@media (max-width:520px){
+  .g4{grid-template-columns:1fr}
+  .co .bar{display:none}
+  .brand small{display:none}
+  .hero .big{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<div class="top"><div class="wrap">
+  <div class="brand">Rainy Day Fund<small>Auteco · Portal de socios</small></div>
+  <div class="spacer"></div>
+  <div class="who"><span id="uname">Socio</span><div class="ava" id="uini">S</div></div>
+</div></div>
+
+<nav><div class="wrap" id="nav"></div></nav>
+
+<main class="wrap">
+
+  <div class="demo" id="banner">
+    <div id="banner-txt"></div>
+    <button id="banner-btn" onclick="toggleEjemplo()"></button>
+  </div>
+
+  <!-- ============ INICIO ============ -->
+  <section class="view on" id="v-inicio">
+    <div class="hero">
+      <div class="in">
+        <p class="lbl">Saldo del fondo · corte del <span id="h-fecha"></span></p>
+        <div class="big" id="h-cop"></div>
+        <div class="alt" id="h-usd"></div>
+
+        <div class="prog">
+          <div class="row"><span>Avance hacia la meta de USD 50 millones</span><b id="p-pct"></b></div>
+          <div class="track"><div class="fill" id="p-fill"></div><div class="mark" id="p-mark"></div></div>
+          <div class="marklbl" id="p-mark-l"></div>
+        </div>
+      </div>
+      <div class="foot">
+        <span>TRM del corte <b id="h-trm"></b></span>
+        <span>Próximo corte <b id="h-next"></b></span>
+        <span>Frecuencia <b id="h-freq"></b></span>
+      </div>
+    </div>
+
+    <div class="grid g3" style="margin-top:14px" id="i-tiles">
+      <div class="card" id="i-delta-card">
+        <p class="sub">Desde el corte anterior</p>
+        <div class="stat" id="i-delta"></div>
+        <p class="mini" id="i-delta-n"></p>
+      </div>
+      <div class="card">
+        <p class="sub" id="i-cierre-t">Cierre de este año</p>
+        <div class="stat" id="i-cierre"></div>
+        <p class="mini" id="i-cierre-n"></p>
+      </div>
+      <div class="card">
+        <p class="sub">Llega a la meta en</p>
+        <div class="stat" id="i-meta"></div>
+        <p class="mini" id="i-meta-n"></p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h3>Dónde está el detalle</h3>
+      <div class="mapa" id="i-mapa"></div>
+    </div>
+  </section>
+
+  <!-- ============ PROYECCIÓN ============ -->
+  <section class="view" id="v-proyeccion">
+    <div class="card">
+      <figure>
+        <h3>Cómo ha ido creciendo el fondo</h3>
+        <figcaption>Saldo en COP millones al cierre de cada corte.</figcaption>
+        <div id="c-hist"></div>
+      </figure>
+      <details class="exp"><summary>¿Por qué sube en escalones?</summary>
+        <p>Cada escalón es un corte. En cada uno las compañías del grupo entregan la parte de
+        su caja que les toca aportar, y esa plata entra al fondo de una vez. Por eso la línea
+        no sube parejo: sube cuando entra un aporte.</p>
+      </details>
+    </div>
+
+    <div class="card">
+      <figure>
+        <h3>Hacia dónde va</h3>
+        <figcaption>Proyección del saldo al cierre de cada año, contra la meta de USD 50 millones.</figcaption>
+        <div id="c-proy"></div>
+        <div class="legend">
+          <span><i class="sw ln" style="background:var(--navy)"></i>Saldo proyectado</span>
+          <span><i class="sw ln" style="background:#9AA3B0"></i>Meta USD 50 M</span>
+          <span><i class="sw ln" style="background:#C6C0B4"></i>Umbral de recompra USD 30 M</span>
+        </div>
+      </figure>
+    </div>
+
+    <div class="card">
+      <h3>Año por año</h3>
+      <p class="sub">Cuánto aportan las compañías, cuánto rinde el fondo y con cuánto cierra.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Año</th><th>Aportes</th><th>Rendimiento</th><th>Saldo al cierre (USD)</th>
+          <th>Saldo al cierre (COP MM)</th><th>% de la meta</th></tr></thead>
+        <tbody id="t-proy"></tbody>
+      </table></div>
+      <p class="sub" style="margin-top:12px"><b>2026 no es proyección.</b> El fondo cierra el año
+        en <b>COP 22.000 millones</b>, los 10.000 que ya tenía más 12.000 que aportan las
+        compañías. Por eso esa fila va marcada. El barrido del 30% rige de 2027 en adelante.</p>
+    </div>
+
+    <div class="card">
+      <h3>Los supuestos macro detrás de la proyección</h3>
+      <p class="sub">La proyección está en dólares, así que la TRM decide cuánto vale en dólares
+        cada peso que entra. La curva se ancla en <b>3.200 para 2026</b>, por instrucción de la
+        dirección financiera, y en <b>3.309 para 2027</b>, del marco macroeconómico del
+        Presupuesto. De 2028 en adelante se reconstruye desde esa base aplicando las
+        devaluaciones año a año de Apex, que salen del estudio de proyecciones hecho por
+        Iverlink en 2026.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Año</th><th>TRM</th><th>Devaluación</th></tr></thead>
+        <tbody id="t-macro"></tbody>
+      </table></div>
+      <p class="sub" style="margin-top:16px"><b>Marco macroeconómico del Presupuesto 2027.</b>
+        Consolidado de BTG, Bancolombia, Occidente, ITAÚ y JP Morgan.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Indicador</th><th>2027</th></tr></thead>
+        <tbody id="t-ppto27"></tbody>
+      </table></div>
+    </div>
+
+    <div class="card">
+      <h3>Recompra de acciones</h3>
+      <p class="sub">Se habilita al llegar a USD 30 millones</p>
+      <div class="sem" style="margin-top:14px">
+        <span class="dot" id="s-dot"></span>
+        <div style="flex:1">
+          <span class="pill" id="s-pill"></span>
+          <p class="mini" id="s-txt" style="margin-top:7px"></p>
+        </div>
+      </div>
+      <details class="exp"><summary>¿Qué significa la recompra?</summary>
+        <p>Cuando el fondo pase de USD 30 millones, la compañía podrá usar una parte para
+        comprarle acciones a los socios que quieran vender. Hay tres reglas fijas: solo se
+        puede a partir de esos 30 millones, nunca más de USD 5 millones en un año, y el
+        fondo jamás puede quedar por debajo de 30 millones después de hacerlo.</p>
+      </details>
+    </div>
+  </section>
+
+
+  <!-- ============ REAL ============ -->
+  <section class="view" id="v-real">
+    <div class="card">
+      <h3>El fondo hoy</h3>
+      <p class="sub">Lo que el fondo tiene en este momento, contra lo que la proyección
+        esperaba para el cierre del año.</p>
+      <div class="grid g3" id="re-fondo" style="margin-top:16px"></div>
+    </div>
+
+    <div class="card">
+      <h3>La caja de las compañías</h3>
+      <p class="sub" id="re-cab"></p>
+      <div class="grid g3" id="re-kpis" style="margin-top:16px"></div>
+      <div class="tw" style="margin-top:18px"><table>
+        <thead><tr><th>Compañía</th><th>Bancos</th><th>Fondos de inversión</th>
+          <th>Saldo neto</th><th>Rainy Day Fund</th><th>Caja operativa</th></tr></thead>
+        <tbody id="t-re"></tbody>
+        <tfoot id="tf-re"></tfoot>
+      </table></div>
+      <p class="sub" id="re-cob" style="margin-top:12px"></p>
+    </div>
+
+    <div class="card">
+      <figure>
+        <h3>Dónde está la caja</h3>
+        <figcaption>Caja operativa por compañía, ya descontado el Rainy Day Fund,
+          en COP millones.</figcaption>
+        <div id="c-real"></div>
+      </figure>
+    </div>
+
+    <div class="card">
+      <h3>La posición de caja, por partes</h3>
+      <p class="sub">Del total consolidado del grupo hasta el fondo, sin bajar a cuenta
+        por cuenta. Cada renglón sale del archivo de tesorería.</p>
+      <div id="re-det" style="margin-top:18px"></div>
+    </div>
+
+    <div class="card">
+      <h3>Cómo se actualiza</h3>
+      <p class="sub">Cada viernes en la mañana un proceso lee el archivo de saldos de la carpeta
+        de tesorería en SharePoint, valida que el día esté cargado y que las cifras cuadren, y
+        reemplaza los números de esta pestaña. Si algo no cuadra, no publica y avisa: la
+        pestaña se queda mostrando el último corte bueno.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Dato</th><th>Valor</th></tr></thead>
+        <tbody id="t-re-meta"></tbody>
+      </table></div>
+      <details class="exp"><summary>El fondo ya no es un cálculo, es un saldo</summary>
+        <p>El fondo tiene su propia posición, en BTG. El portal lee ese saldo del mismo archivo
+        que lee todo lo demás, todos los días. No es un estimado ni el resultado de aplicar una
+        regla: es plata que está ahí y se puede contrastar contra el extracto.</p>
+        <p>La regla del 30% sigue existiendo, pero ya no decide lo que el socio ve. Decide
+        <b>cuánto se traslada</b> de las compañías al fondo, y eso se hace cada cierto tiempo,
+        no todos los días. Lo que se mueve diario en esta pantalla es el saldo real.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============ COMPAÑÍAS ============ -->
+  <section class="view" id="v-companias">
+    <div class="card">
+      <h3>Qué ha puesto cada compañía</h3>
+      <p class="sub">Acumulado de todos los cortes, en COP millones. Esto es plata ya
+        recibida, sin factores ni ajustes.</p>
+      <div id="co-acum" style="margin-top:14px"></div>
+      <details class="exp"><summary>¿De dónde sale esta plata?</summary>
+        <p>No es plata nueva ni un aporte extra de los socios. Cada compañía del grupo separa
+        una parte de la caja que le sobra después de cubrir su operación, y esa parte va al
+        fondo en vez de repartirse como dividendo. Hoy esa parte es el 30%.</p>
+      </details>
+    </div>
+
+    <div class="card">
+      <h3>En el último corte</h3>
+      <p class="sub" id="co-fecha"></p>
+      <div id="co-corte" style="margin-top:14px"></div>
+    </div>
+
+    <div class="card">
+      <h3>Lo que aportará cada una hasta 2033</h3>
+      <p class="sub">Proyección acumulada del plan completo, en COP millones, ya con el factor
+        de credibilidad aplicado.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Compañía</th><th>Aporte proyectado 2026–2033</th><th>% del total</th><th style="width:210px">Peso</th></tr></thead>
+        <tbody id="t-co"></tbody>
+        <tfoot><tr><td>Total</td><td id="t-co-tot"></td><td>100,0%</td><td></td></tr></tfoot>
+      </table></div>
+      <p class="sub" id="t-co-nota" style="margin-top:16px;border-left:3px solid var(--rust);padding-left:16px"></p>
+    </div>
+
+    <div class="card">
+      <h3>Qué tanto le creemos a cada proyección</h3>
+      <p class="sub">Cada compañía tiene un factor que recorta su flujo de caja proyectado.
+        Hoy solo Blue Mobility está recortada.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Compañía</th><th>Fondo si va al 100%</th><th>Al 85%</th>
+          <th>Al 70%</th><th>Al 50%</th><th>Al 0%</th><th>Costo de 100% a 70%</th></tr></thead>
+        <tbody id="t-cred"></tbody>
+      </table></div>
+      <p class="mini" style="margin-top:12px" id="cred-nota"></p>
+    </div>
+
+    <div class="card">
+      <h3>Si no le creyéramos a ninguna</h3>
+      <p class="sub">Hasta dónde aguanta el plan si la caja proyectada no se cumple.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Factor aplicado a las siete</th><th>Fondo al cierre de 2033</th>
+          <th>% de la meta</th><th>¿Alcanza?</th></tr></thead>
+        <tbody id="t-credg"></tbody>
+      </table></div>
+      <p class="mini" style="margin-top:12px">El escenario de hoy no es ninguna de estas filas:
+        Blue está en 70% y las otras seis en 100%. El punto de quiebre está entre el 85% y el
+        70%.</p>
+    </div>
+  </section>
+
+  <!-- ============ INVERSIÓN ============ -->
+
+  <!-- ============ RENDIMIENTOS ============ -->
+  <section class="view" id="v-rendimientos">
+    <div class="grid g4">
+      <div class="card">
+        <p class="sub">Rendimiento total en 8 años</p>
+        <div class="stat g" id="rd-tot"></div>
+        <p class="mini" id="rd-tot-n"></p>
+      </div>
+      <div class="card">
+        <p class="sub">Lo pone el tramo en dólares</p>
+        <div class="stat" id="rd-usd"></div>
+        <p class="mini" id="rd-usd-n"></p>
+      </div>
+      <div class="card">
+        <p class="sub">Lo pone el tramo en pesos</p>
+        <div class="stat" id="rd-cop"></div>
+        <p class="mini" id="rd-cop-n"></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>En qué moneda</h3>
+      <p class="sub">La composición objetivo es 70% en dólares y 30% en pesos, para no quedar
+        expuestos a una sola moneda.</p>
+      <div class="grid g2" style="margin-top:16px">
+        <div>
+          <p class="sub">Tramo en dólares · 70% objetivo</p>
+          <div class="stat" id="m-usd"></div>
+          <p class="mini">Irá a bonos del Tesoro de EE.UU. a 10 años más 1 punto porcentual.
+            Hoy esa referencia paga <b id="m-usd-r"></b> al año.</p>
+        </div>
+        <div>
+          <p class="sub">Tramo en pesos · 30% objetivo</p>
+          <div class="stat" id="m-cop"></div>
+          <p class="mini">Irá a TES de Colombia a 10 años más 1 punto porcentual.
+            Hoy esa referencia paga <b id="m-cop-r"></b> al año en pesos.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <figure>
+        <h3>Cuánto rinde el fondo cada año</h3>
+        <figcaption>En dólares, separado por tramo. Crece año a año porque el fondo es cada
+          vez más grande, no porque las tasas suban: de hecho bajan.</figcaption>
+        <div id="c-rend"></div>
+        <div class="legend">
+          <span><i class="sw" style="background:var(--blue)"></i>Tramo en dólares</span>
+          <span><i class="sw" style="background:var(--green)"></i>Tramo en pesos, ya medido en dólares</span>
+        </div>
+      </figure>
+      <details class="exp"><summary>¿Por qué 2026 aparece en cero?</summary>
+        <p>Porque ya está contado. Durante 2026 el fondo está en BTG rindiendo 10,1% efectivo
+        anual, y ese rendimiento ya viene dentro de los COP 22.000 millones con que cierra el
+        año. Ponerlo otra vez en esta tabla sería contarlo dos veces.</p>
+        <p>De 2027 en adelante sí se proyecta aparte, porque ahí el fondo pasa a los vehículos
+        del manual: 70% en dólares y 30% en pesos.</p>
+      </details>
+    </div>
+
+    <div class="card">
+      <h3>Desglose año por año</h3>
+      <p class="sub">Todo el detalle del cálculo, para quien lo quiera revisar.</p>
+      <div class="tw"><table>
+        <thead><tr>
+          <th>Año</th><th>Tasa tramo USD</th><th>Tasa tramo COP</th>
+          <th>Rinde el tramo USD</th><th>Rinde el tramo COP (COP mm)</th>
+          <th>Eso en USD, antes de devaluación</th><th>Efecto devaluación</th>
+          <th>Tramo COP neto (USD)</th><th>Total del año</th>
+        </tr></thead>
+        <tbody id="t-rend"></tbody>
+        <tfoot><tr id="t-rend-tot"></tr></tfoot>
+      </table></div>
+    </div>
+
+    <div class="card">
+      <h3>Lo que hay que entender de esta tabla</h3>
+      <p class="sub" style="font-size:13.5px;color:var(--ink-2);margin-top:10px" id="rd-txt"></p>
+      <details class="exp"><summary>¿Entonces conviene o no tener plata en pesos?</summary>
+        <p>Conviene. Aunque la devaluación se coma una parte, el TES paga tanto más que el
+        bono del Tesoro que, incluso después de descontarla, el tramo en pesos rinde por
+        encima. Con el 30% de la plata produce más del 35% del rendimiento. Y además cumple
+        otra función: el fondo existe para una crisis del grupo, y los gastos del grupo son
+        en pesos.</p>
+      </details>
+    </div>
+
+    <div class="card">
+      <figure>
+        <h3>Las tasas de referencia</h3>
+        <figcaption>El Tesoro de EE.UU. y los TES de Colombia, a 10 años. Sobre estas dos
+          se construye lo que gana el fondo. Ambas bajan desde 2028 y se estabilizan.</figcaption>
+        <div id="c-tasas"></div>
+        <div class="legend">
+          <span><i class="sw ln" style="background:var(--blue)"></i>Bono del Tesoro EE.UU. 10 años</span>
+          <span><i class="sw ln" style="background:var(--green)"></i>TES Colombia 10 años</span>
+        </div>
+      </figure>
+    </div>
+
+    <div class="card">
+      <figure>
+        <h3>Lo que gana el fondo sobre esas tasas</h3>
+        <figcaption>La del tramo en pesos ya está medida en dólares, con la devaluación
+          descontada, para que las dos sean comparables.</figcaption>
+        <div id="c-tasas-tramo"></div>
+        <div class="legend">
+          <span><i class="sw ln" style="background:var(--blue)"></i>Tramo en dólares</span>
+          <span><i class="sw ln" style="background:var(--green)"></i>Tramo en pesos, en dólares</span>
+          <span><i class="sw ln" style="background:#7C8B9C"></i>Tasa mezclada del fondo</span>
+          <span><i class="sw ln" style="background:#B0A99C"></i>TES a secas, antes de devaluación</span>
+        </div>
+      </figure>
+    </div>
+
+    <div class="card">
+      <h3>Cómo se calcula</h3>
+      <div class="note" style="margin-top:12px">
+        <ul style="margin:0;padding-left:18px">
+          <li><b>Capitalización mensual efectiva.</b> La tasa anual se convierte mes a mes con
+            (1+anual)^(1/12)−1, no dividiendo entre doce.</li>
+          <li><b>El rendimiento se queda adentro y vuelve a rendir.</b> No se reparte: entra
+            por la misma cascada que los aportes, primero al Bolsillo 3 hasta su tope.</li>
+          <li><b>La devaluación se descuenta, no se estima aparte.</b> El tramo en pesos rinde
+            (1+tasa COP)/(1+devaluación)−1 medido en dólares, con la misma curva de TRM del modelo.</li>
+          <li><b>Aportes y rendimiento se separan siempre.</b> De lo que tendrá el fondo en
+            2033, <span id="rd-split"></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MOVIMIENTOS ============ -->
+  <section class="view" id="v-movimientos">
+    <div class="grid g4" style="margin-bottom:14px">
+      <div class="card">
+        <p class="sub">Entró al fondo</p>
+        <div class="delta"><span class="up">↑</span><span class="n" id="d-entra"></span></div>
+        <p class="mini" id="d-entra-u"></p>
+      </div>
+      <div class="card">
+        <p class="sub">Rendimiento del periodo</p>
+        <div class="stat" id="d-rend"></div>
+        <p class="mini" id="d-rend-n"></p>
+      </div>
+      <div class="card">
+        <p class="sub">Saldo anterior</p>
+        <div class="stat" id="d-prev"></div>
+        <p class="mini" id="d-prev-f"></p>
+      </div>
+      <div class="card">
+        <p class="sub">Crecimiento del periodo</p>
+        <div class="stat g" id="d-pct"></div>
+        <p class="mini">frente al corte anterior</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Movimientos del fondo</h3>
+      <p class="sub">Un registro por cada corte, del más reciente al más antiguo.
+        Los movimientos aparecen cuando el proceso semanal registre el segundo corte.</p>
+      <div id="movs" style="margin-top:8px"></div>
+    </div>
+  </section>
+
+  <!-- ============ CONEXIÓN ============ -->
+
+  <footer>
+    <span>Rainy Day Fund</span>
+    <span>Datos al corte del <span id="f-fecha"></span></span>
+    <span class="spacer"></span>
+
+  </footer>
+
+</main>
+<div id="tip"></div>
+
+<script>
+/* =====================================================================
+   CAPA DE DATOS
+   Toda la app lee de API.getFondo(). Para conectar la fuente real,
+   reemplace el cuerpo de getFondo por el fetch al endpoint.
+   ===================================================================== */
+const ORD = ["Autecos","Grupo SI3","Blue Mobility","Soltrech","Dismerca","Mundimotos Col","Mundimotos Mx"];
+
+/* histórico de ejemplo: [fecha, saldoCOPmm, entraCOPmm, trm, ...7 aportes] */
+/* =====================================================================
+   CORTES
+   Solo hay un corte real: el saldo del fondo que reportó la dirección
+   financiera, fechado el mismo día del archivo de saldos de tesorería.
+   El histórico se construye a partir del primer corte del proceso diario.
+   ===================================================================== */
+/* TRM oficial del dia, Banco de la Republica. Se actualiza aparte de los cortes:
+   el saldo en pesos es del ultimo corte, pero lo que vale en dolares se mide con
+   la tasa de hoy, que es la que importa para una meta denominada en USD. */
+const TRM_HOY = { valor: 3306.86, fecha: "2026-09-28" };
+
+const CORTES_REALES = [
+  { fecha:"2026-09-21", saldoCOP:10040.760183, entra:null, rendimiento:0, trm:3192.92, aportes:null,
+    fuente:"Posición BTG del archivo de saldos de tesorería" },
+  { fecha:"2026-09-23", saldoCOP:10052.228081, entra:11.5, rendimiento:0, trm:3208.66, aportes:null,
+    fuente:"Posición BTG del archivo de saldos de tesorería" }
+];
+
+/* Serie de ejemplo. NO son cifras del fondo: sirven para mostrarle a alguien
+   cómo se verá la app cuando lleve varios meses corriendo. Se activa con el
+   botón del aviso de arriba y la app lo grita en pantalla mientras está puesta. */
+const CORTES_EJEMPLO = [
+  ["2026-05-22",3800.0,0.0,3120.00,0,0,0,0,0,0,0],
+  ["2026-05-29",4149.8,349.8,3124.71,257.4,35.1,8.1,34.4,9.9,4.6,0.3],
+  ["2026-06-05",4573.8,424.0,3129.41,298.2,37.7,12.2,52.2,15.9,7.4,0.4],
+  ["2026-06-12",4904.5,330.7,3134.12,233.5,34.1,9.1,37.0,10.6,6.1,0.3],
+  ["2026-06-19",5243.7,339.2,3138.82,251.8,30.2,6.5,34.0,10.7,5.7,0.3],
+  ["2026-06-26",5599.2,355.5,3143.53,258.2,30.4,6.2,43.0,12.8,4.6,0.3],
+  ["2026-07-03",5872.8,273.6,3148.24,192.2,31.5,6.7,30.1,8.1,4.8,0.2],
+  ["2026-07-10",6212.9,340.1,3152.94,227.5,34.7,7.6,50.2,14.4,5.4,0.3],
+  ["2026-07-17",6577.0,364.1,3157.65,247.0,44.9,9.5,41.7,14.8,5.8,0.4],
+  ["2026-07-24",6974.3,397.3,3162.35,275.5,46.2,9.4,44.0,15.2,6.5,0.5],
+  ["2026-07-31",7229.4,255.1,3167.06,185.8,21.5,5.3,30.7,7.4,4.2,0.2],
+  ["2026-08-07",7527.1,297.7,3171.76,201.3,38.2,8.5,33.9,10.6,4.9,0.3],
+  ["2026-08-14",7781.6,254.5,3176.47,174.9,24.3,7.1,34.2,9.3,4.4,0.3],
+  ["2026-08-21",8182.2,400.6,3181.18,296.6,35.0,7.4,42.0,14.2,5.0,0.4],
+  ["2026-08-28",8559.2,377.0,3185.88,280.8,31.7,9.6,36.0,13.5,5.0,0.4],
+  ["2026-09-04",8803.8,244.6,3190.59,181.4,22.8,4.4,24.9,6.8,4.1,0.2],
+  ["2026-09-11",9239.6,435.8,3195.29,315.7,37.1,9.0,52.8,15.0,5.8,0.4],
+  ["2026-09-18",10000.0,760.4,3192.92,621.4,43.2,11.9,57.0,19.3,7.1,0.5]
+].map(r=>({ fecha:r[0], saldoCOP:r[1], entra:r[2], rendimiento:0, trm:r[3],
+            aportes:Object.fromEntries(ORD.map((n,i)=>[n,r[4+i]])) }));
+
+let EJEMPLO = false;   // arranca en datos reales
+
+const MOCK = {
+  meta:{ objetivoUSD:50000000, umbralRecompraUSD:30000000, topeRecompraAnualUSD:5000000,
+         barridoEstandar:0.30, composicion:{usd:0.70, cop:0.30},
+         horizonte:{desde:2026, hasta:2033} },
+  periodicidad:"semanal",
+  proximoCorte:"2026-09-25",   // viernes siguiente
+  trmHoy: TRM_HOY,
+  cortes: CORTES_REALES,
+  /* ---------------------------------------------------------------------
+     SUPUESTOS MACRO. 2026 y 2027 del marco macroeconómico del Presupuesto 2027
+     (Marcoeconomicos Ppto 2027 V1.xlsx, hoja Resumen), que pondera BTG,
+     Bancolombia, Occidente, ITAÚ y JP Morgan. De 2028 en adelante la TRM se
+     reconstruye desde la base de 2027 aplicando las devaluaciones de Apex.
+  --------------------------------------------------------------------- */
+  macro:{
+    trm:[3200, 3309.02, 3518.29, 3661.99, 3764.28, 3869.43, 3977.52, 4088.62],
+    devaluacion:[null, .034069, .063242, .040845, .027933, .027933, .027933, .027933],
+    origen:["Observada en el segundo semestre, por instrucción de la dirección financiera",
+            "Consolidado del marco macroeconómico del Presupuesto 2027",
+            "Apex","Apex","Apex","Apex","Apex","Apex"],
+    ppto2027:{ trm:3309.0216, ipc:0.0555, ibr:0.1179, smmlv:0.085,
+               trmQ:[["Q1-27",3293.66],["Q2-27",3285.18],["Q3-27",3302.73],["Q4-27",3354.52]] }
+  },
+  proyeccion:[
+    {anio:2026, aportes:6875000, rendimiento:0, saldo:6875000, b3:6875000,b2:0, b1:0},
+    {anio:2027, aportes:6444345, rendimiento:420742, saldo:13740087, b3:13740087,b2:0, b1:0},
+    {anio:2028, aportes:6018090, rendimiento:845002, saldo:20603178, b3:15000000,b2:5603178, b1:0},
+    {anio:2029, aportes:5056735, rendimiento:1245497, saldo:26905411, b3:15000000,b2:11905411, b1:0},
+    {anio:2030, aportes:4530405, rendimiento:1582282, saldo:33018098, b3:15000000,b2:15000000, b1:3018098},
+    {anio:2031, aportes:4121571, rendimiento:1941764, saldo:39081432, b3:15000000,b2:15000000, b1:9081432},
+    {anio:2032, aportes:3887806, rendimiento:2298343, saldo:45267580, b3:15000000,b2:15000000, b1:15267580},
+    {anio:2033, aportes:3818506, rendimiento:2662144, saldo:51748230, b3:15524469,b2:15524469, b1:20699292}
+  ],
+  /* ---------------------------------------------------------------------
+     REAL. Sale de "1. Saldos Grupo Auteco.xlsx" (SharePoint > Tesoreria AU-MO
+     > TESORERIA > Saldos Diarios). Se reemplaza entero en cada corrida diaria.
+     La forma es la que produce Automatizacion/extraer_saldos.py.
+  --------------------------------------------------------------------- */
+  real:{
+    fecha:"2026-09-21", semana:39, dia:"Lunes",
+    fuente:"1. Saldos Grupo Auteco.xlsx",
+    extraidoEn:"2026-09-21T19:07",
+    trm:3192.92,
+    /* El Rainy Day Fund vive en la posición BTG, dentro del bloque de fondos de
+       inversión de ASAS. Está incluido en el neto de ASAS y en el del grupo, así
+       que la caja operativa de cada compañía es su neto MENOS el fondo. */
+    fondo:{ nombre:"BTG", saldo:10040760183, celda:"D38", dentroDe:"ASAS" },
+    companias:[
+      {cod:"ASAS", nombre:"Autotecnica Colombiana SAS", bancos:-11426656742, fondos:14467949836,
+       neto:3041293094, usd:24279.79, fondoRD:10040760183, operativa:-6999467089,
+       detBancos:[["Banco de Bogotá · Corriente",209350802],["Davivienda · Corriente",-15895515042],
+         ["BBVA · Corriente",36856032],["Bancolombia · Ahorros",2266908699],
+         ["Bancolombia Nómina · Ahorros",126436043],["Bancolombia · Corriente",161808628],
+         ["Banco de Occidente · Corriente",74382494],["Itaú · Corriente",722976728],
+         ["Banco AV Villas",19354986],["Banco AV Villas Nómina",29578564],
+         ["Febit",743681897],["Davivienda Miami (COP)",77523427]],
+       detFondos:[["BTG",10040760183],["Credicorp Capital · Fonval",4341336163],
+         ["Valores Bancolombia · Renta Liquidez",32203939],["Fiducolombia · Fiducuenta",20416668],
+         ["Corficolombiana · Casa de Bolsa",15065652],["Corredores Asociados · Fondo Interés",9784658],
+         ["Fiduciaria Davivienda",6579123],["BBVA Fondo Efectivo",1803450]]},
+      {cod:"AMOB", nombre:"Auteco Mobility", bancos:1731812211, fondos:239054378,
+       neto:1970866589, usd:84094.89, fondoRD:0, operativa:1970866589,
+       detBancos:[["Bancolombia · Ahorros",516153894],["Bancolombia · Corriente",412822902],
+         ["Davivienda Miami (COP)",268508256],["Itaú · Corriente",162088673],["Febit",158261014],
+         ["Banco de Bogotá · Ahorros",139669757],["Banco Agrario · Ahorros",94329375],
+         ["Davivienda · Ahorros",88912847],["Bancolombia Nómina · Ahorros",65222717],
+         ["BBVA · Corriente",42354488],["Bancolombia Trakku · Ahorros",26235087],
+         ["Bancolombia Escisión · Ahorros",25707318],["Banco de Bogotá · Ahorros 2",19012705],
+         ["Davivienda · Corriente",-287466822]],
+       detFondos:[["Credicorp Capital · Fonval",202095252],["Fiducolombia · Fiducuenta",25476628],
+         ["Valores Bancolombia · Renta Liquidez",5896378],["Corredores Asociados · Fondo Interés",5586120]]},
+      {cod:"BLUE", nombre:"Blue Mobility", bancos:76816947, fondos:null,
+       neto:76816947, usd:2889.97, fondoRD:0, operativa:76816947,
+       detBancos:[["Bancolombia · Corriente",33763009],["BBVA · Corriente",21095344],
+         ["Febit",12731151],["Bancolombia PR (USD)",9227443]],
+       detFondos:[]}
+    ],
+    cobertura:"El archivo cubre ASAS, Auteco Mobility y Blue. Las otras cuatro compañías del modelo todavía no tienen fuente diaria."
+  },
+  aportePlan:[
+    {compania:"Autecos",        copMM:91539.9, pct:0.6677, factor:1.00},
+    {compania:"Blue Mobility",  copMM:8103.3, pct:0.0591, factor:0.70},
+    {compania:"Dismerca",       copMM:10037.7, pct:0.0732, factor:1.00},
+    {compania:"Grupo SI3",      copMM:14166.1, pct:0.1033, factor:1.00},
+    {compania:"Mundimotos Col", copMM:2374.5, pct:0.0173, factor:1.00},
+    {compania:"Mundimotos Mx",  copMM:278.2, pct:0.0020, factor:1.00},
+    {compania:"Soltrech",       copMM:10594.0, pct:0.0773, factor:1.00}
+  ],
+  /* sensibilidad a la caja: fondo 2033 si UNA sola compañía va a cada factor */
+  credNiveles:[1.00,0.85,0.70,0.50,0.00],
+  credibilidad:[
+    {compania:"Autecos",        factor:1.00, v:[51748230,50057897,48367564,46113786,40479342], costo:-3380666},
+    {compania:"Blue Mobility",  factor:0.70, v:[52703149,52225690,51748230,51111617,49520084], costo:-954920},
+    {compania:"Dismerca",       factor:1.00, v:[51748230,51422952,51097675,50663971,49579713], costo:-650555},
+    {compania:"Grupo SI3",      factor:1.00, v:[51748230,51444718,51141206,50736523,49724817], costo:-607024},
+    {compania:"Mundimotos Col", factor:1.00, v:[51748230,51693263,51638296,51565007,51381784], costo:-109934},
+    {compania:"Mundimotos Mx",  factor:1.00, v:[51748230,51738650,51729071,51716298,51684366], costo:-19159},
+    {compania:"Soltrech",       factor:1.00, v:[51748230,51445082,51141934,50737737,49727244], costo:-606296}
+  ],
+  credGlobal:[
+    {factor:1.00, saldo:52703149, meta:1.0541, ok:1},
+    {factor:0.85, saldo:49538873, meta:0.9908, ok:0},
+    {factor:0.70, saldo:46374596, meta:0.9275, ok:0},
+    {factor:0.50, saldo:42155561, meta:0.8431, ok:0},
+    {factor:0.00, saldo:31607972, meta:0.6322, ok:0}
+  ],
+  bolsillos:[
+    {n:3, nombre:"Máxima liquidez",     topeUSD:15000000, pct:0.30, orden:"Se llena primero",
+     desc:"Fondos de los que se puede sacar el dinero el mismo día o al siguiente. Es a lo que se recurre primero en una emergencia."},
+    {n:2, nombre:"Liquidez media",      topeUSD:15000000, pct:0.30, orden:"Se llena segundo",
+     desc:"Deuda de empresas y de gobiernos con muy buena calificación. Rinde más que el primero y sigue siendo vendible."},
+    {n:1, nombre:"Máxima rentabilidad", topeUSD:20000000, pct:0.40, orden:"Se llena tercero",
+     desc:"Inversiones a más largo plazo con el capital protegido al vencimiento. Es el que mejor rinde y el que menos conviene tocar antes de tiempo."}
+  ],
+  tasas:{
+    anios:[2026,2027,2028,2029,2030,2031,2032,2033],
+    tesoroUSA:[.0479,.0479,.0463,.0446,.0440,.0440,.0440,.0440],
+    tesCol:   [.1239,.1239,.1097,.0953,.0900,.0900,.0900,.0900],
+    spread:0.01,
+    tramoUsd:   [.0579,.0579,.0563,.0546,.0540,.0540,.0540,.0540],
+    tramoCop:   [.1339,.1339,.1197,.1053,.1000,.1000,.1000,.1000],
+    tramoCopUsd:[.0959,.0959,.0821,.0683,.0631,.0631,.0631,.0631],
+    mezclada:   [.0693,.0693,.0640,.0587,.0567,.0567,.0567,.0567],
+    devaluacion:0.0347,
+    trm:[3200,3309,3518,3662,3764,3869,3978,4089]
+  },
+  /* rendimiento generado cada año: tramo USD, tramo COP en pesos, tramo COP en USD,
+     bruto del tramo COP antes de devaluación, efecto devaluación, total */
+  rendimientos:[
+    {anio:2026, usd:0, cop:0, copUsd:0, bruto:0, dev:0, total:0},
+    {anio:2027, usd:279134, cop:907539912, copUsd:141607, bruto:283606, dev:-141999, total:420742},
+    {anio:2028, usd:542234, cop:1718158576, copUsd:302768, bruto:519235, dev:-216467, total:845002},
+    {anio:2029, usd:789566, cop:2362990855, copUsd:455932, bruto:671631, dev:-215699, total:1245497},
+    {anio:2030, usd:1019170, cop:3016469683, copUsd:563112, bruto:823723, dev:-260611, total:1582282},
+    {anio:2031, usd:1250717, cop:3805189023, copUsd:691047, bruto:1010866, dev:-319819, total:1941764},
+    {anio:2032, usd:1480394, cop:4629770904, copUsd:817948, bruto:1196499, dev:-378551, total:2298343},
+    {anio:2033, usd:1714724, cop:5512405576, copUsd:947420, bruto:1385891, dev:-438471, total:2662144}
+  ],
+  usuario:{ nombre:"Socio", iniciales:"S" }
+};
+
+const API = {
+  /* ---------------------------------------------------------------------
+     Lee "fondo.json", el archivo que el flujo de Power Automate reescribe
+     cada viernes en la misma carpeta de SharePoint que esta página.
+     Si el archivo todavía no existe, o falla la lectura, la página se
+     queda con los datos embebidos y lo dice en pantalla. Nunca queda en
+     blanco ni muestra una cifra a medias.
+     --------------------------------------------------------------------- */
+  origen: 'embebido',
+  async getFondo(){
+    try{
+      const r = await fetch('fondo.json?t='+Date.now(), {cache:'no-store'});
+      if(r.ok){
+        const j = await r.json();
+        const f = fusiona(MOCK, j);
+        API.origen = 'fondo.json';
+        return f;
+      }
+    }catch(e){ /* archivo ausente o sin permiso: se sigue con lo embebido */ }
+    return MOCK;
+  }
+};
+
+/* Mete lo que trae fondo.json dentro del modelo. Solo toca el bloque real
+   y la lista de cortes; la proyección, las tasas y el plan siguen siendo
+   los del modelo, que no cambian semana a semana. */
+function fusiona(base, j){
+  const F = JSON.parse(JSON.stringify(base));
+  const ORDEN = ['ASAS','AMOB','BLUE'];
+  const cs = j.companias || {};
+
+  F.real = {
+    fecha: j.fecha, semana: j.semana, dia: j.dia,
+    fuente: j.fuente, extraidoEn: (j.extraidoEn||'').slice(0,16),
+    trm: j.trm,
+    fondo: j.fondo || F.real.fondo,
+    companias: ORDEN.filter(k=>cs[k]).map(k=>({
+      cod:k, nombre:cs[k].nombre, bancos:cs[k].bancos,
+      fondos:cs[k].fondos, neto:cs[k].neto, usd:cs[k].usd,
+      fondoRD:cs[k].fondoRainyDay||0, operativa:cs[k].operativa,
+      detBancos:cs[k].detBancos||[], detFondos:cs[k].detFondos||[]
+    })),
+    cobertura: F.real.cobertura,
+    alertas: j.alertas||[]
+  };
+
+  // el saldo del fondo es la posición BTG, leída del mismo archivo
+  const saldoMM = (j.fondo && j.fondo.saldo) ? j.fondo.saldo/1e6 : null;
+  if(saldoMM!==null){
+    const corte = { fecha:j.fecha, saldoCOP:saldoMM, entra:null, rendimiento:0,
+                    trm:j.trm, aportes:null,
+                    fuente:'Posición '+j.fondo.nombre+' del archivo de tesorería' };
+    if(Array.isArray(j.historico) && j.historico.length){
+      F.cortes = j.historico.map(h=>({ fecha:h.fecha, saldoCOP:h.saldo/1e6,
+        entra:null, rendimiento:0, trm:h.trm, aportes:null,
+        fuente:'Posición '+j.fondo.nombre+' del archivo de tesorería' }));
+    } else {
+      F.cortes = base.cortes.filter(c=>c.fecha < j.fecha).concat([corte]);
+    }
+    // entra = variación contra el corte anterior
+    for(let i=1;i<F.cortes.length;i++)
+      F.cortes[i].entra = +(F.cortes[i].saldoCOP - F.cortes[i-1].saldoCOP).toFixed(1);
+  }
+  return F;
+}
+
+/* =====================================================================
+   FORMATO
+   ===================================================================== */
+const n0=new Intl.NumberFormat('es-CO',{maximumFractionDigits:0});
+const n1=new Intl.NumberFormat('es-CO',{minimumFractionDigits:1,maximumFractionDigits:1});
+const cop=v=>'COP '+n0.format(Math.round(v))+' MM';
+const usd=v=>'USD '+n0.format(Math.round(v));
+const musd=v=>'USD '+n1.format(v/1e6)+' M';
+const pct=(v,d=1)=>(v*100).toFixed(d).replace('.',',')+'%';
+const nf1x=v=>n1.format(v);
+const MES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+function fecha(s){const [a,m,d]=s.split('-').map(Number);return d+' '+MES[m-1]+' '+a;}
+function fechaL(s){const [a,m,d]=s.split('-').map(Number);
+  const L=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  return d+' de '+L[m-1]+' de '+a;}
+
+/* =====================================================================
+   TOOLTIP Y SVG
+   ===================================================================== */
+const tip=document.getElementById('tip');
+function showTip(e,h){tip.innerHTML=h;tip.style.opacity=1;
+  const r=tip.getBoundingClientRect();
+  let x=e.clientX+14,y=e.clientY-r.height-10;
+  if(x+r.width>innerWidth-8)x=e.clientX-r.width-14;
+  if(y<8)y=e.clientY+18;
+  tip.style.left=x+'px';tip.style.top=y+'px';}
+function hideTip(){tip.style.opacity=0}
+const rws=l=>l.map(([k,v])=>`<div class="tr"><i>${k}</i><span>${v}</span></div>`).join('');
+
+const NS='http://www.w3.org/2000/svg';
+const el=(t,a)=>{const n=document.createElementNS(NS,t);for(const k in a)n.setAttribute(k,a[k]);return n};
+function tx(x,y,s,o={}){const n=el('text',{x,y,'font-size':o.fs||11.5,fill:o.fill||'#6B6A64',
+  'text-anchor':o.a||'start','font-weight':o.w||400,'font-family':'inherit'});
+  if(o.halo){n.setAttribute('stroke','#fff');n.setAttribute('stroke-width','3.5');
+    n.setAttribute('paint-order','stroke');}
+  n.textContent=s;return n}
+function box(h,w,ht){const s=el('svg',{viewBox:`0 0 ${w} ${ht}`,preserveAspectRatio:'xMidYMid meet',role:'img'});
+  h.innerHTML='';h.appendChild(s);return s}
+function gridY(s,M,W,y,max,fmt,n=4){
+  for(let i=0;i<=n;i++){const v=max*i/n,p=y(v);
+    s.appendChild(el('line',{x1:M.l,x2:W-M.r,y1:p,y2:p,stroke:'#E8E3D9','stroke-width':1}));
+    s.appendChild(tx(M.l-9,p+4,fmt(v),{a:'end'}));}}
+
+/* =====================================================================
+   NAVEGACIÓN
+   ===================================================================== */
+const TABS=[['inicio','Inicio'],['proyeccion','Proyección'],['real','Real'],
+            ['companias','Compañías'],
+            ['rendimientos','Rendimientos'],
+            ['movimientos','Movimientos']];
+function go(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+id));
+  document.querySelectorAll('#nav button').forEach(b=>
+    b.setAttribute('aria-current', b.dataset.id===id?'page':'false'));
+  scrollTo({top:0,behavior:'smooth'});
+  if(id==='proyeccion'||id==='real'||id==='rendimientos')
+    requestAnimationFrame(()=>drawCharts());
+}
+document.getElementById('nav').innerHTML =
+  TABS.map(([id,l])=>`<button data-id="${id}" onclick="go('${id}')">${l}</button>`).join('');
+
+/* =====================================================================
+   RENDER
+   ===================================================================== */
+let F=null;
+
+function pintaBanner(){
+  const b=document.getElementById('banner'), x=document.getElementById('banner-txt'),
+        k=document.getElementById('banner-btn');
+  b.classList.toggle('ej',EJEMPLO);
+  x.innerHTML = EJEMPLO
+    ? '<b>Está viendo datos de ejemplo.</b> El histórico de cortes que aparece en pantalla '
+      + '<b>no es real</b>: son cifras inventadas para mostrar cómo se verá la app cuando '
+      + 'lleve meses corriendo. No las use para nada.'
+    : (API.origen==='fondo.json'
+        ? '<b>Conectada.</b> Los saldos vienen de <code>fondo.json</code>, que el proceso '
+          + 'reescribe cada viernes desde el archivo de tesorería. Último corte: '
+          + fechaL(F.real.fecha)+'. La proyección 2026–2033 sale del modelo.'
+          + (F.real.alertas && F.real.alertas.length
+              ? ' <b style="color:#A8452C">Avisos del último proceso:</b> '+F.real.alertas.join(' ')
+              : '')
+        : '<b>Sin conectar todavía.</b> La página está mostrando los últimos saldos que se '
+          + 'cargaron a mano, del 21 y el 23 de septiembre, y toda la proyección del modelo. '
+          + 'Cuando el proceso semanal empiece a escribir <code>fondo.json</code> al lado de '
+          + 'esta página, se actualiza sola y este aviso cambia.');
+  k.textContent = EJEMPLO ? 'Volver a datos reales' : 'Ver con datos de ejemplo';
+}
+function toggleEjemplo(){
+  EJEMPLO=!EJEMPLO;
+  F.cortes = EJEMPLO ? CORTES_EJEMPLO : CORTES_REALES;
+  render(); drawCharts(); pintaBanner();
+}
+
+function render(){
+  const cs=F.cortes, last=cs[cs.length-1], prev=cs[cs.length-2]||null;
+  const trmHoy = (F.trmHoy && F.trmHoy.valor) || last.trm;
+  const saldoUSD=last.saldoCOP*1e6/trmHoy;
+  const HAY=!!prev;                         // hay con qué comparar
+  const AP=last.aportes||null;              // desglose por compañía de este corte
+  const avance=saldoUSD/F.meta.objetivoUSD;
+
+  /* --- usuario --- */
+  document.getElementById('uname').textContent=F.usuario.nombre;
+  document.getElementById('uini').textContent=F.usuario.iniciales;
+
+  /* --- hero --- */
+  document.getElementById('h-fecha').textContent=fecha(last.fecha);
+  document.getElementById('f-fecha').textContent=fechaL(last.fecha);
+  document.getElementById('h-cop').textContent=cop(last.saldoCOP);
+  document.getElementById('h-usd').textContent='equivale a '+usd(saldoUSD);
+  document.getElementById('h-trm').textContent=n1.format(trmHoy)
+    + (F.trmHoy ? ' · '+fecha(F.trmHoy.fecha) : '');
+  document.getElementById('h-trm').parentNode.firstChild.textContent='TRM de hoy ';
+  (function(){
+    const d=new Date(last.fecha+'T12:00:00');
+    const hoy=new Date();
+    do { d.setDate(d.getDate()+1); } while (d.getDay()!==5);   // 5 = viernes
+    while (d < hoy) d.setDate(d.getDate()+7);                  // nunca una fecha pasada
+    document.getElementById('h-next').textContent =
+      d.getDate()+' '+MES[d.getMonth()]+' '+d.getFullYear();
+  })();
+  document.getElementById('h-freq').textContent=F.periodicidad;
+
+  document.getElementById('p-pct').textContent=pct(avance);
+  document.getElementById('p-fill').style.width=Math.min(100,avance*100)+'%';
+  const mk=F.meta.umbralRecompraUSD/F.meta.objetivoUSD;
+  document.getElementById('p-mark').style.left=(mk*100)+'%';
+  document.getElementById('p-mark-l').textContent=
+    'La marca naranja es el umbral de USD 30 millones, donde se habilita la recompra.';
+
+  /* --- variación --- */
+  const dCOP=HAY?last.saldoCOP-prev.saldoCOP:null;
+  const _e = last.entra;
+  const _neg = _e!==null && _e<0;
+  const _elem=document.getElementById('d-entra');
+  _elem.textContent = _e===null?'—':(_neg?'− ':'+ ')+cop(Math.abs(_e));
+  const _lbl=_elem.parentNode.previousElementSibling;
+  const _pre2027 = +last.fecha.slice(0,4) < 2027;
+  if(_lbl) _lbl.textContent = _e===null ? 'Variación del saldo'
+    : _neg ? 'Salió del fondo' : (_pre2027?'Rindió la posición':'Entró al fondo');
+  _elem.style.color = _e===null?'var(--ink-3)':(_neg?'var(--rust)':'var(--green)');
+  const _fl=_elem.parentNode.querySelector('.up');
+  if(_fl){ _fl.textContent=_e===null?'·':(_neg?'↓':'↑');
+    _fl.style.background=_neg?'#F4E3DE':'var(--green-bg)';
+    _fl.style.color=_neg?'var(--rust)':'var(--green)'; }
+  document.getElementById('d-entra-u').textContent = _e===null
+    ? 'todavía no hay un corte anterior con qué comparar'
+    : (_neg ? 'el saldo bajó frente al corte anterior · '
+            : _pre2027 ? 'rendimiento de BTG, el barrido arranca en 2027 · '
+                       : 'aportes de las compañías · ')
+      +usd(Math.abs(_e)*1e6/last.trm);
+  document.getElementById('d-rend').textContent=last.rendimiento?cop(last.rendimiento):'Aún no aplica';
+  document.getElementById('d-rend-n').textContent=last.rendimiento?'rendimiento del portafolio'
+    :'el de los vehículos del manual arranca en 2027. Lo que el fondo rinde hoy es el de '
+     +'la posición en BTG, la cifra de la izquierda';
+  document.getElementById('d-prev').textContent=HAY?cop(prev.saldoCOP):'—';
+  document.getElementById('d-prev-f').textContent=HAY?'corte del '+fecha(prev.fecha):'este es el primer corte';
+  const _pe=document.getElementById('d-pct');
+  const _cmp = HAY && last.entra!==null;
+  _pe.textContent=_cmp?(dCOP<0?'':'+')+pct(dCOP/prev.saldoCOP):'—';
+  _pe.style.color=!_cmp?'var(--ink-3)':(dCOP<0?'var(--rust)':'var(--green)');
+  _pe.previousElementSibling.textContent = !_cmp?'Variación del periodo'
+    :(dCOP<0?'Variación del periodo':'Crecimiento del periodo');
+  _pe.nextElementSibling.textContent = _cmp?'frente al corte anterior'
+    :'los dos cortes vienen de fuentes distintas, restarlos no da un movimiento';
+
+  /* --- resumen de portada --- */
+  const hit=F.proyeccion.find(p=>p.saldo>=F.meta.objetivoUSD);
+  const anio=+last.fecha.slice(0,4);
+  const cierre=F.proyeccion.find(p=>p.anio===anio);
+  const CIERRE_FIJO_MM = 22000;   // COP 22.000 mm, decisión tomada para 2026
+  const cierreMM = !cierre ? 0
+    : (+last.fecha.slice(0,4)===2026 ? CIERRE_FIJO_MM : cierre.aportes*last.trm/1e6);
+
+  // la variación entre cortes solo tiene sentido cuando el fondo se alimenta
+  // del barrido semanal, o sea de 2027 en adelante
+  const VAR_DESDE = 2027;
+  const muestraDelta = anio >= VAR_DESDE && HAY;
+  document.getElementById('i-delta-card').hidden = !muestraDelta;
+  document.getElementById('i-tiles').className = 'grid '+(muestraDelta?'g3':'g2');
+  if(muestraDelta){
+    document.getElementById('i-delta').textContent = (dCOP>=0?'+ ':'− ')+cop(Math.abs(dCOP));
+    document.getElementById('i-delta').className = 'stat'+(dCOP>=0?' g':'');
+    document.getElementById('i-delta-n').textContent = 'contra el corte del '+fecha(prev.fecha);
+  }
+
+  const CIERRE_FIJO = 2026;   // 2026 no se proyecta: es una decisión tomada
+  const esFijo = anio===CIERRE_FIJO;
+  document.getElementById('i-cierre-t').textContent =
+    esFijo ? 'Cierre de '+anio+', ya definido' : 'Cierre proyectado de '+anio;
+  document.getElementById('i-cierre').textContent=cierre?cop(cierreMM):'—';
+  document.getElementById('i-cierre-n').textContent = !cierre ? ''
+    : esFijo ? musd(cierre.aportes)+' · dato confirmado, no proyección. Son los '
+               +cop(last.saldoCOP)+' que hay hoy más lo que entra hasta diciembre'
+             : musd(cierre.aportes);
+
+  document.getElementById('i-meta').textContent=hit?hit.anio:'Fuera del horizonte';
+  document.getElementById('i-meta-n').textContent=hit
+    ?'cerraría ese año en '+musd(hit.saldo)+', el '+pct(hit.saldo/F.meta.objetivoUSD)+' de la meta'
+    :'con el plan actual no se alcanza dentro del horizonte';
+
+  document.getElementById('i-mapa').innerHTML=[
+    ['proyeccion','Proyección','Año por año hasta 2033 y los supuestos macro detrás'],
+    ['real','Real','Saldo del fondo y caja de cada compañía, cuenta por cuenta'],
+    ['companias','Compañías','Cuánto pone cada una y qué pasa si alguna no cumple'],
+    ['rendimientos','Rendimientos','En qué moneda está, a qué tasa rinde y cuánto produce'],
+    ['movimientos','Movimientos','Un registro por cada corte']
+  ].map(([id,q,d])=>`<a href="#" onclick="go('${id}');return false">
+      <span class="q">${q}</span><span class="d">${d}</span></a>`).join('');
+
+  /* --- recompra --- */
+  const ok=saldoUSD>=F.meta.umbralRecompraUSD;
+  const yrThr=F.proyeccion.find(p=>p.saldo>=F.meta.umbralRecompraUSD);
+  document.getElementById('s-dot').className='dot '+(ok?'on':'off');
+  document.getElementById('s-pill').className='pill '+(ok?'si':'no');
+  document.getElementById('s-pill').textContent=ok?'Habilitada':'Todavía no';
+  document.getElementById('s-txt').textContent= ok
+    ? 'Se puede recomprar hasta '+usd(Math.min(F.meta.topeRecompraAnualUSD, saldoUSD-F.meta.umbralRecompraUSD))+' sin romper las reglas.'
+    : 'Faltan '+usd(F.meta.umbralRecompraUSD-saldoUSD)+' para llegar al umbral. Se proyecta cruzarlo en '+(yrThr?yrThr.anio:'—')+'.';
+
+  /* --- proyección anual --- */
+  document.getElementById('t-proy').innerHTML=F.proyeccion.map((p,i)=>{
+    const fijo = p.anio===F.meta.horizonte.desde;      // 2026 es dato, no proyección
+    const copMM = p.saldo*F.macro.trm[i]/1e6;
+    return `<tr${fijo?' style="background:var(--tan-bg)"':''}>
+      <td>${p.anio}${fijo?' <span style="font-size:11px;color:var(--tan);font-weight:600">· dato</span>':''}</td>
+      <td>${n0.format(p.aportes)}</td>
+      <td>${p.rendimiento?n0.format(p.rendimiento):'—'}</td>
+      <td><b>${n0.format(p.saldo)}</b></td>
+      <td><b>${n0.format(copMM)}</b></td>
+      <td>${pct(p.saldo/F.meta.objetivoUSD)}</td></tr>`;}).join('');
+
+  /* --- supuestos macro --- */
+  const MC=F.macro;
+  document.getElementById('t-macro').innerHTML=F.proyeccion.map((pr,i)=>`<tr>
+    <td><b>${pr.anio}</b></td>
+    <td>${n1.format(MC.trm[i])}</td>
+    <td>${MC.devaluacion[i]===null?'—':pct(MC.devaluacion[i],2)}</td></tr>`).join('');
+  const P27=MC.ppto2027;
+  document.getElementById('t-ppto27').innerHTML=`
+    <tr><td>TRM promedio</td><td>${n1.format(P27.trm)}</td></tr>
+    <tr><td>IPC, variación anual</td><td>${pct(P27.ipc,2)}</td></tr>
+    <tr><td>IBR overnight, efectivo anual</td><td>${pct(P27.ibr,2)}</td></tr>
+    <tr><td>Aumento del salario mínimo</td><td>${pct(P27.smmlv,1)}</td></tr>
+    ${P27.trmQ.map(([q,v])=>`<tr><td style="color:var(--ink-2)">TRM ${q}</td>
+      <td style="color:var(--ink-2)">${n1.format(v)}</td></tr>`).join('')}`;
+
+  /* --- compañías --- */
+  renderReal();
+
+  const conAp=cs.filter(c=>c.aportes);
+  if(conAp.length){
+    const acum=ORD.map(n=>({n, v:conAp.reduce((a,c)=>a+(c.aportes[n]||0),0)}))
+                  .filter(x=>x.v>0).sort((a,b)=>b.v-a.v);
+    document.getElementById('co-acum').innerHTML=barras(acum,acum.reduce((a,x)=>a+x.v,0));
+  } else {
+    document.getElementById('co-acum').innerHTML='<div class="vacio">Todavía no hay aportes '
+      +'registrados por compañía.<br>Esta gráfica se llena con el primer corte que traiga el '
+      +'desglose. Mientras tanto, abajo está el plan del modelo.</div>';
+  }
+
+  if(AP){
+    const ult=ORD.map(n=>({n, v:AP[n]||0})).filter(x=>x.v>0).sort((a,b)=>b.v-a.v);
+    document.getElementById('co-fecha').textContent='Aportes del corte del '+fecha(last.fecha)+
+      ', en COP millones. Total '+n1.format(last.entra)+'.';
+    document.getElementById('co-corte').innerHTML=barras(ult,ult.reduce((a,x)=>a+x.v,0));
+  } else {
+    document.getElementById('co-fecha').textContent=
+      'El corte del '+fecha(last.fecha)+' no trae desglose por compañía.';
+    document.getElementById('co-corte').innerHTML='<div class="vacio">Se conoce el saldo total '
+      +'del fondo, no cuánto puso cada compañía en este corte.</div>';
+  }
+
+  const _plan=F.aportePlan.slice().sort((a,b)=>b.copMM-a.copMM);
+  const _mx=_plan[0].copMM||1;
+  document.getElementById('t-co').innerHTML=_plan.map(p=>`<tr>
+    <td>${p.compania}</td>
+    <td>${n0.format(p.copMM)}</td>
+    <td${p.pct>.5?' style="color:#A8452C;font-weight:600"':''}>${pct(p.pct)}</td>
+    <td><i style="display:block;height:10px;background:#0D3B70;width:${(p.copMM/_mx*100).toFixed(1)}%"></i></td>
+    </tr>`).join('');
+  const _co=_plan[0];
+  document.getElementById('t-co-nota').innerHTML= _co.pct>.5
+    ? '<b>Riesgo de concentración.</b> '+_co.compania+' pone el '+pct(_co.pct)+' de todo lo que '
+      +'entra al fondo en los ocho años. El fondo existe para amortiguar un golpe al grupo y '
+      +'depende de la misma compañía que más caja genera y más riesgo concentra.'
+    : 'Ninguna compañía pasa de la mitad del fondeo.';
+
+  /* --- sensibilidad a la caja de las empresas --- */
+  document.getElementById('t-cred').innerHTML=F.credibilidad.map(d=>`<tr>
+    <td>${d.compania}</td>
+    ${d.v.map(v=>`<td${v<F.meta.objetivoUSD?' style="color:#A8452C;font-weight:600"':''}>${n0.format(Math.round(v))}</td>`).join('')}
+    <td><b>${n0.format(Math.round(d.costo))}</b></td></tr>`).join('');
+  const _peor=F.credibilidad.slice().sort((a,b)=>a.costo-b.costo)[0];
+  document.getElementById('cred-nota').innerHTML=
+    'Cada celda es el fondo al cierre de 2033 si <b>esa</b> compañía va a ese factor y las demás '+
+    'se quedan como están. En rojo, los casos en que el fondo no alcanza la meta. '+
+    'La compañía que más pesa es <b>'+_peor.compania+'</b>: recortarle 30 puntos le cuesta al '+
+    'fondo '+usd(-_peor.costo)+'.';
+
+  document.getElementById('t-credg').innerHTML=F.credGlobal.map(d=>`<tr>
+    <td>${pct(d.factor,0)}</td><td><b>${n0.format(Math.round(d.saldo))}</b></td>
+    <td>${pct(d.meta)}</td>
+    <td><span class="pill ${d.ok?'si':'no'}">${d.ok?'Sí':'No'}</span></td></tr>`).join('');
+  document.getElementById('t-co-tot').textContent=
+    n0.format(F.aportePlan.reduce((a,p)=>a+p.copMM,0));
+
+  /* --- moneda y rendimiento --- */
+  const t=F.tasas, i=Math.max(0,t.anios.indexOf(new Date().getFullYear()));
+  document.getElementById('m-usd').textContent=usd(saldoUSD*F.meta.composicion.usd);
+  document.getElementById('m-cop').textContent=cop(last.saldoCOP*F.meta.composicion.cop);
+  document.getElementById('m-usd-r').textContent=pct(t.tesoroUSA[i]+t.spread,2);
+  document.getElementById('m-cop-r').textContent=pct(t.tesCol[i]+t.spread,2);
+
+  /* --- rendimientos --- */
+  const R=F.rendimientos;
+  const sum=k=>R.reduce((a,x)=>a+x[k],0);
+  const rTot=sum('total'), rUsd=sum('usd'), rCop=sum('copUsd'),
+        rBru=sum('bruto'), rDev=sum('dev'), rCopMM=sum('cop')/1e6;
+  const tAp=F.proyeccion.reduce((a,p)=>a+p.aportes,0);
+  const fin2033=F.proyeccion[F.proyeccion.length-1].saldo;
+
+  document.getElementById('rd-tot').textContent=musd(rTot);
+  document.getElementById('rd-tot-n').textContent=pct(rTot/fin2033)+' del fondo al cierre de 2033';
+  document.getElementById('rd-usd').textContent=musd(rUsd);
+  document.getElementById('rd-usd-n').textContent=pct(rUsd/rTot)+' del rendimiento, con el '
+    +pct(F.meta.composicion.usd,0)+' de la plata';
+  document.getElementById('rd-cop').textContent=musd(rCop);
+  document.getElementById('rd-cop-n').textContent=pct(rCop/rTot)+' del rendimiento, con el '
+    +pct(F.meta.composicion.cop,0)+' de la plata';
+
+  document.getElementById('t-rend').innerHTML=R.map((d,i)=>`<tr>
+    <td>${d.anio}</td><td>${pct(F.tasas.tramoUsd[i],2)}</td><td>${pct(F.tasas.tramoCop[i],2)}</td>
+    <td>${d.usd?n0.format(Math.round(d.usd)):'—'}</td>
+    <td>${d.cop?nf1x(d.cop/1e6):'—'}</td>
+    <td>${d.bruto?n0.format(Math.round(d.bruto)):'—'}</td>
+    <td>${d.dev?n0.format(Math.round(d.dev)):'—'}</td>
+    <td>${d.copUsd?n0.format(Math.round(d.copUsd)):'—'}</td>
+    <td><b>${d.total?n0.format(Math.round(d.total)):'—'}</b></td></tr>`).join('');
+  document.getElementById('t-rend-tot').innerHTML=`<td>Total 8 años</td><td>—</td><td>—</td>
+    <td>${n0.format(Math.round(rUsd))}</td><td>${n0.format(Math.round(rCopMM))}</td>
+    <td>${n0.format(Math.round(rBru))}</td><td>${n0.format(Math.round(rDev))}</td>
+    <td>${n0.format(Math.round(rCop))}</td><td>${n0.format(Math.round(rTot))}</td>`;
+
+  document.getElementById('rd-txt').innerHTML=
+    'El tramo en pesos gana <b>COP '+n0.format(Math.round(rCopMM))+' millones</b> en los ocho años. '+
+    'A la TRM de cada momento eso serían '+usd(rBru)+'. Pero el peso se devalúa, así que esos '+
+    'pesos valen menos dólares cada año: la devaluación se lleva '+usd(-rDev)+', el '+
+    pct(-rDev/rBru)+' de lo ganado. Lo que de verdad entra al fondo por ese lado son '+
+    usd(rCop)+'. Aun así el tramo en pesos rinde más que el de dólares, porque el TES paga '+
+    pct(F.tasas.tramoCop[0],2)+' contra el '+pct(F.tasas.tramoUsd[0],2)+' del Tesoro, y esa '+
+    'diferencia alcanza a cubrir la devaluación del '+pct(F.tasas.devaluacion,2)+' anual y sobra.';
+
+  document.getElementById('rd-split').innerHTML=
+    usd(tAp)+' los ponen las compañías y '+usd(rTot)+' los pone el propio portafolio.';
+
+  /* --- movimientos --- */
+  document.getElementById('movs').innerHTML=cs.slice().reverse().map((c,k)=>{
+    const ini=k===cs.length-1;
+    const top=c.aportes?ORD.map(n=>[n,c.aportes[n]||0]).sort((a,b)=>b[1]-a[1])[0]:null;
+    const sinMov = c.entra===null;
+    const neg=!ini && !sinMov && c.entra<0;
+    const tit=(ini||sinMov)?'Saldo del fondo'
+      :neg?'El saldo bajó'
+      :(+c.fecha.slice(0,4)<2027?'Rendimiento de la posición':'Aporte de las compañías');
+    const ico=(ini||sinMov)?'•':(neg?'↓':'↑');
+    const est=neg?' style="background:#F4E3DE;color:var(--rust)"':'';
+    const val=(ini||c.entra===null)?'—':(neg?'':'+ ')+n1.format(c.entra)+' MM';
+    return `<div class="mov">
+      <div class="ic ${(ini||sinMov)?'ini':''}"${est}>${ico}</div>
+      <div class="t"><b>${tit}</b>
+        <span>${fechaL(c.fecha)}${c.fuente?' · '+c.fuente:''}${(ini||sinMov||!top||neg)?'':' · mayor aporte: '+top[0]}</span></div>
+      <div class="v"><b${neg?' style="color:var(--rust)"':''}>${val}</b>
+        <span>saldo ${n0.format(c.saldoCOP)} MM</span></div></div>`;}).join('');
+
+  pintaBanner();
+}
+
+function barras(list,total){
+  const max=list[0]?list[0].v:1;
+  return list.map(x=>`<div class="co">
+    <div class="nm">${x.n}</div>
+    <div class="bar"><i style="width:${Math.max(1,x.v/max*100)}%"></i></div>
+    <div class="vv"><b>${n1.format(x.v)}</b> MM · ${pct(x.v/total)}</div>
+  </div>`).join('');
+}
+
+
+/* ---------------------------------------------------------------------
+   REAL
+   --------------------------------------------------------------------- */
+const mm = v => v/1e6;
+
+function renderReal(){
+  const R=F.real, cs=F.cortes, last=cs[cs.length-1];
+
+  // --- el fondo -----------------------------------------------------------
+  const anio=+last.fecha.slice(0,4);
+  const meta=(F.proyeccion.find(x=>x.anio===anio)||{});
+  const metaMM = anio===2026 ? 22000 : (meta.aportes||0)*last.trm/1e6;
+  const avance=metaMM>0?last.saldoCOP/metaMM:0;
+  document.getElementById('re-fondo').innerHTML=`
+    <div class="card">
+      <p class="sub">Saldo del fondo</p>
+      <div class="stat">${cop(last.saldoCOP)}</div>
+      <p class="mini">${usd(last.saldoCOP*1e6/((F.trmHoy&&F.trmHoy.valor)||last.trm))} · corte del ${fecha(last.fecha)}<br>
+        <span style="color:var(--ink-3)">${last.fuente||''}</span></p>
+    </div>
+    <div class="card">
+      <p class="sub">Proyectado al cierre de ${anio}</p>
+      <div class="stat">${cop(metaMM)}</div>
+      <p class="mini">${musd(meta.aportes||0)} según el modelo</p>
+    </div>
+    <div class="card">
+      <p class="sub">Avance del año</p>
+      <div class="stat">${pct(avance,0)}</div>
+      <p class="mini">Contra el cierre de COP 22.000 millones</p>
+    </div>`;
+
+  // --- la caja de las companias -------------------------------------------
+  document.getElementById('re-cab').textContent =
+    'Saldos del '+fechaL(R.fecha)+' ('+R.dia.toLowerCase()+' de la semana '+R.semana
+    +'), tomados del archivo de tesorería. TRM del día '+n1.format(R.trm)+'.';
+
+  const tB=R.companias.reduce((a,c)=>a+c.bancos,0);
+  const tF=R.companias.reduce((a,c)=>a+(c.fondos||0),0);
+  const tN=R.companias.reduce((a,c)=>a+c.neto,0);
+  const tU=R.companias.reduce((a,c)=>a+(c.usd||0),0);
+  const tRD=R.fondo.saldo;
+  const tOp=tN-tRD;
+
+  document.getElementById('re-kpis').innerHTML=`
+    <div class="card"><p class="sub">Caja neta del grupo</p>
+      <div class="stat">${cop(mm(tN))}</div>
+      <p class="mini">Bancos más fondos. <b>Incluye el fondo</b>, porque está dentro de ASAS</p></div>
+    <div class="card"><p class="sub">Menos el Rainy Day Fund</p>
+      <div class="stat" style="color:var(--ink-3)">− ${cop(mm(tRD))}</div>
+      <p class="mini">La posición ${R.fondo.nombre}, dentro de los fondos de ${R.fondo.dentroDe}</p></div>
+    <div class="card"><p class="sub">Caja operativa del grupo</p>
+      <div class="stat" style="color:${tOp<0?'#A8452C':'var(--navy)'}">${cop(mm(tOp))}</div>
+      <p class="mini">Lo que le queda al grupo para operar, sin tocar el fondo</p></div>`;
+
+  const neg=v=>v<0?' style="color:#A8452C"':'';
+  document.getElementById('t-re').innerHTML=R.companias.map(c=>`<tr>
+    <td><b>${c.nombre}</b></td>
+    <td${neg(c.bancos)}>${n0.format(mm(c.bancos))}</td>
+    <td>${c.fondos===null?'<span style="color:var(--ink-3)">no reporta</span>':n0.format(mm(c.fondos))}</td>
+    <td>${c.neto===null?'—':n0.format(mm(c.neto))}</td>
+    <td style="color:var(--ink-3)">${c.fondoRD?'− '+n0.format(mm(c.fondoRD)):'—'}</td>
+    <td${neg(c.operativa)}><b>${n0.format(mm(c.operativa))}</b></td></tr>`).join('');
+  document.getElementById('tf-re').innerHTML=`<tr>
+    <td>Grupo</td><td${neg(tB)}>${n0.format(mm(tB))}</td><td>${n0.format(mm(tF))}</td>
+    <td>${n0.format(mm(tN))}</td><td>− ${n0.format(mm(tRD))}</td>
+    <td${neg(tOp)}>${n0.format(mm(tOp))}</td></tr>`;
+  document.getElementById('re-cob').textContent=R.cobertura;
+
+  // --- posición de caja del grupo, solo el general -------------------------
+  const gBancos = R.companias.reduce((a,c)=>a+(c.bancos||0),0);
+  const gFondos = R.companias.reduce((a,c)=>a+(c.fondos||0),0);
+  const gBTG    = R.fondo.saldo||0;
+  const gFondosSinBTG = gFondos - gBTG;
+  const gOperativa = gBancos + gFondosSinBTG;
+  const gTotal  = gOperativa + gBTG;
+
+  const fila=(etq,val,op={})=>`<div style="display:flex;justify-content:space-between;
+    align-items:baseline;padding:${op.tot?'13px 0':'11px 0'};
+    border-bottom:1px solid ${op.tot?'var(--ink)':'var(--line-2)'};
+    ${op.sub?'padding-left:20px;':''}${op.tot?'border-top:1px solid var(--line);':''}">
+    <span style="font-size:${op.tot?'14px':'13.5px'};${op.tot?'font-weight:600;':''}
+      color:${op.sub?'var(--ink-3)':'var(--ink-2)'}">${etq}</span>
+    <b style="font-family:var(--serif);font-size:${op.tot?'20px':'17px'};font-weight:500;
+      color:${val<0?'var(--rust)':(op.fondo?'var(--navy)':'var(--ink)')}">${n0.format(mm(val))}</b>
+  </div>`;
+
+  document.getElementById('re-det').innerHTML =
+    '<div style="max-width:620px">'
+    + '<div style="font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;'
+    + 'color:var(--ink-3);margin-bottom:6px">Consolidado del grupo · COP millones</div>'
+    + fila('Caja en bancos', gBancos)
+    + fila('Fondos de inversión, sin contar el fondo', gFondosSinBTG)
+    + fila('Caja operativa del grupo', gOperativa, {tot:true})
+    + '<div style="height:22px"></div>'
+    + fila('Rainy Day Fund · posición '+R.fondo.nombre, gBTG, {fondo:true})
+    + fila('Posición de caja total', gTotal, {tot:true})
+    + '<p class="mini" style="margin-top:16px">La caja operativa es lo que le queda al grupo '
+    + 'para operar sin tocar el fondo. El fondo está dentro del saldo de '
+    + R.fondo.dentroDe + ' en el archivo de tesorería, por eso se resta aparte y no se '
+    + 'suma dos veces.</p></div>';
+
+  document.getElementById('t-re-meta').innerHTML=`
+    <tr><td>Archivo</td><td>${R.fuente}</td></tr>
+    <tr><td>Corte</td><td>${fechaL(R.fecha)} · ${R.dia}, semana ${R.semana}</td></tr>
+    <tr><td>Leído el</td><td>${R.extraidoEn.replace('T',' a las ')}</td></tr>
+    <tr><td>TRM del día</td><td>${n1.format(R.trm)}</td></tr>
+    <tr><td>Compañías en el archivo</td><td>${R.companias.length} de ${F.aportePlan.length}</td></tr>
+    <tr><td>El fondo</td><td>Posición ${R.fondo.nombre}, celda ${R.fondo.celda}, dentro de los
+      fondos de inversión de ${R.fondo.dentroDe}</td></tr>`;
+}
+
+/* =====================================================================
+   GRÁFICOS
+   ===================================================================== */
+let drawn=false;
+function drawCharts(){
+  chartHist(); chartProy(); chartReal(); chartTasas(); chartRend(); chartTasasTramo(); drawn=true;
+}
+
+function chartHist(){
+  const h=document.getElementById('c-hist'); if(!h) return;
+  const cs=F.cortes;
+  if(cs.length<3){
+    h.innerHTML='<div class="vacio">Todavía no hay serie que dibujar: van '
+      +(cs.length===1?'un corte':cs.length+' cortes')+'.<br>'
+      +'La gráfica aparece cuando el proceso semanal registre el tercero.</div>';
+    return;
+  }
+  const W=860,H=290,M={t:16,r:18,b:38,l:62};
+  const s=box(h,W,H);
+  const max=Math.ceil(cs[cs.length-1].saldoCOP*1.1/2000)*2000;
+  const y=v=>H-M.b-(v/max)*(H-M.t-M.b);
+  const x=i=>M.l+((W-M.l-M.r)/(cs.length-1))*i;
+  gridY(s,M,W,y,max,v=>n0.format(v));
+  const d=cs.map((c,i)=>(i?'L':'M')+x(i)+' '+y(c.saldoCOP)).join(' ');
+  s.appendChild(el('path',{d,fill:'none',stroke:'#0D3B70','stroke-width':2.5,
+    'stroke-linejoin':'round','stroke-linecap':'round'}));
+  cs.forEach((c,i)=>{
+    s.appendChild(el('circle',{cx:x(i),cy:y(c.saldoCOP),r:3.4,fill:'#0D3B70',
+      stroke:'#F7F5F0','stroke-width':1.8}));
+    if(i===0||i===cs.length-1||i%4===0)
+      s.appendChild(tx(x(i),H-M.b+18,fecha(c.fecha).slice(0,6),{a:'middle',fs:11}));
+    const bw=(W-M.l-M.r)/(cs.length-1);
+    const hit=el('rect',{x:x(i)-bw/2,y:M.t,width:bw,height:H-M.t-M.b,class:'hit'});
+    hit.addEventListener('mousemove',e=>showTip(e,`<div class="tt">${fechaL(c.fecha)}</div>`+
+      rws([['Saldo',n1.format(c.saldoCOP)+' MM'],
+           ['Entró',c.entra?'+'+n1.format(c.entra)+' MM':'—'],
+           ['En dólares',usd(c.saldoCOP*1e6/c.trm)]])));
+    hit.addEventListener('mouseleave',hideTip);
+    s.appendChild(hit);
+  });
+  s.appendChild(el('line',{x1:M.l,x2:W-M.r,y1:H-M.b,y2:H-M.b,stroke:'#9AA3B0','stroke-width':1}));
+}
+
+function chartProy(){
+  const h=document.getElementById('c-proy'); if(!h) return;
+  const p=F.proyeccion, W=860,H=300,M={t:26,r:18,b:38,l:62};
+  const s=box(h,W,H);
+  const max=55e6, y=v=>H-M.b-(v/max)*(H-M.t-M.b);
+  const bw=(W-M.l-M.r)/p.length, bar=Math.min(46,bw*.56);
+  gridY(s,M,W,y,max,v=>'$'+n0.format(v/1e6)+'M');
+  [[F.meta.objetivoUSD,'#9AA3B0','Meta'],[F.meta.umbralRecompraUSD,'#C6C0B4','Umbral de recompra']]
+    .forEach(([v,c,l])=>{
+      s.appendChild(el('line',{x1:M.l,x2:W-M.r,y1:y(v),y2:y(v),stroke:c,'stroke-width':2,'stroke-dasharray':'6 4'}));
+      s.appendChild(tx(M.l+7,y(v)-7,l,{fs:11,fill:'#6B6A64',halo:true}));});
+  p.forEach((d,i)=>{
+    const cx=M.l+bw*i+bw/2;
+    const done=d.saldo>=F.meta.objetivoUSD;
+    s.appendChild(el('rect',{x:cx-bar/2,y:y(d.saldo),width:bar,
+      height:Math.max(0,H-M.b-y(d.saldo)),fill:done?'#2E7D55':'#0D3B70',rx:3}));
+    s.appendChild(tx(cx,H-M.b+18,d.anio,{a:'middle',fs:11}));
+    s.appendChild(tx(cx,y(d.saldo)-8,n1.format(d.saldo/1e6),{a:'middle',fs:11,w:600,
+      halo:true, fill:done?'#2E7D55':'#2A4058'}));
+    const hit=el('rect',{x:M.l+bw*i,y:M.t,width:bw,height:H-M.t-M.b,class:'hit'});
+    hit.addEventListener('mousemove',e=>showTip(e,`<div class="tt">${d.anio}</div>`+
+      rws([['Aportes',usd(d.aportes)],['Rendimiento',d.rendimiento?usd(d.rendimiento):'—'],
+           ['Saldo al cierre',usd(d.saldo)],['% de la meta',pct(d.saldo/F.meta.objetivoUSD)]])));
+    hit.addEventListener('mouseleave',hideTip);
+    s.appendChild(hit);
+  });
+  s.appendChild(el('line',{x1:M.l,x2:W-M.r,y1:H-M.b,y2:H-M.b,stroke:'#9AA3B0','stroke-width':1}));
+}
+
+function chartReal(){
+  const h=document.getElementById('c-real'); if(!h) return;
+  const R=F.real.companias.map(c=>({n:c.nombre, b:c.bancos/1e6,
+        f:((c.fondos||0)-(c.fondoRD||0))/1e6,      // fondos de inversión SIN el Rainy Day
+        v:c.operativa/1e6}));
+  const W=860,H=230,M={t:20,r:150,b:34,l:200};
+  const s=box(h,W,H);
+  const lo=Math.min(0,...R.map(r=>r.b)), hi=Math.max(...R.map(r=>r.f),...R.map(r=>r.v));
+  const pad=(hi-lo)*0.08, a=lo-pad, z=hi+pad;
+  const x=v=>M.l+((W-M.l-M.r)*(v-a)/(z-a));
+  const bh=Math.min(26,(H-M.t-M.b)/R.length*0.44);
+  const x0=x(0);
+  s.appendChild(el('line',{x1:x0,x2:x0,y1:M.t-4,y2:H-M.b,stroke:'#C6C0B4','stroke-width':1}));
+
+  R.forEach((r,i)=>{
+    const yc=M.t+((H-M.t-M.b)/R.length)*(i+0.5);
+    s.appendChild(tx(M.l-12,yc+4,r.n,{a:'end',fill:'#2A3441',w:500}));
+    [[r.b,r.b<0?'#A8452C':'#0D3B70','Bancos',-1],[r.f,'#9EAAB8','Fondos',1]].forEach(([v,col,lbl,sg])=>{
+      const yy=yc+sg*bh*0.56-bh*0.5;
+      const xa=Math.min(x0,x(v)), w=Math.abs(x(v)-x0);
+      const rc=el('rect',{x:xa,y:yy,width:Math.max(1.5,w),height:bh*0.9,fill:col,rx:2});
+      rc.addEventListener('mousemove',e=>showTip(e,rws([[r.n,''],[lbl,cop(v)]])));
+      rc.addEventListener('mouseleave',hideTip);
+      s.appendChild(rc);
+    });
+    s.appendChild(tx(W-M.r+10,yc+4,n0.format(r.v)+' MM',{fill:'var(--navy)',w:600}));
+  });
+  s.appendChild(tx(W-M.r+10,M.t-8,'Caja operativa',{fs:10.5}));
+  s.appendChild(tx(M.l,M.t-8,'Bancos arriba · fondos abajo · sin el Rainy Day Fund',{fs:10.5}));
+}
+
+function chartTasas(){
+  const h=document.getElementById('c-tasas'); if(!h) return;
+  const t=F.tasas, W=860,H=250,M={t:16,r:72,b:38,l:52};
+  const s=box(h,W,H);
+  const max=.14, y=v=>H-M.b-(v/max)*(H-M.t-M.b);
+  const x=i=>M.l+((W-M.l-M.r)/(t.anios.length-1))*i;
+  gridY(s,M,W,y,max,v=>(v*100).toFixed(0)+'%',7);
+  const line=(arr,c,l)=>{
+    s.appendChild(el('path',{d:arr.map((v,i)=>(i?'L':'M')+x(i)+' '+y(v)).join(' '),
+      fill:'none',stroke:c,'stroke-width':2.5,'stroke-linejoin':'round','stroke-linecap':'round'}));
+    arr.forEach((v,i)=>s.appendChild(el('circle',{cx:x(i),cy:y(v),r:3.4,fill:c,stroke:'#fff','stroke-width':1.8})));
+    s.appendChild(tx(x(arr.length-1)+9,y(arr[arr.length-1])+4,l,{fs:12,w:600,fill:c}));};
+  line(t.tesCol,'#2E7D55','TES');
+  line(t.tesoroUSA,'#0D3B70','Tesoro');
+  t.anios.forEach((a,i)=>{
+    s.appendChild(tx(x(i),H-M.b+18,a,{a:'middle',fs:11}));
+    const bw=(W-M.l-M.r)/(t.anios.length-1);
+    const hit=el('rect',{x:x(i)-bw/2,y:M.t,width:bw,height:H-M.t-M.b,class:'hit'});
+    hit.addEventListener('mousemove',e=>showTip(e,`<div class="tt">${a}</div>`+
+      rws([['Tesoro EE.UU.',pct(t.tesoroUSA[i],2)],
+           ['Lo que rinde el tramo USD',pct(t.tesoroUSA[i]+t.spread,2)],
+           ['TES Colombia',pct(t.tesCol[i],2)],
+           ['Lo que rinde el tramo COP',pct(t.tesCol[i]+t.spread,2)]])));
+    hit.addEventListener('mouseleave',hideTip);
+    s.appendChild(hit);
+  });
+  s.appendChild(el('line',{x1:M.l,x2:W-M.r,y1:H-M.b,y2:H-M.b,stroke:'#9AA3B0','stroke-width':1}));
+}
+
+function chartRend(){
+  const h=document.getElementById('c-rend'); if(!h) return;
+  const R=F.rendimientos, W=860,H=290,M={t:18,r:18,b:40,l:72};
+  const s=box(h,W,H);
+  const max=3e6, y=v=>H-M.b-(v/max)*(H-M.t-M.b);
+  const bw=(W-M.l-M.r)/R.length, bar=Math.min(46,bw*.56);
+  gridY(s,M,W,y,max,v=>'$'+n1.format(v/1e6)+'M');
+  R.forEach((d,i)=>{
+    const cx=M.l+bw*i+bw/2, x=cx-bar/2;
+    if(d.usd>0) s.appendChild(el('rect',{x,y:y(d.usd),width:bar,
+      height:Math.max(0,H-M.b-y(d.usd)),fill:'#0D3B70',rx:2}));
+    if(d.copUsd>0) s.appendChild(el('rect',{x,y:y(d.usd+d.copUsd),width:bar,
+      height:Math.max(0,y(d.usd)-y(d.usd+d.copUsd)-2),fill:'#2E7D55',rx:2}));
+    else if(d.copUsd<0) s.appendChild(el('rect',{x,y:y(d.usd),width:bar,
+      height:Math.max(0,y(d.total)-y(d.usd)),fill:'#C8823A',rx:2,'fill-opacity':.55}));
+    if(d.total>0) s.appendChild(tx(cx,y(d.total)-9,n1.format(d.total/1e6)+' M',
+      {a:'middle',fs:11,w:600,halo:true,fill:'#2A4058'}));
+    s.appendChild(tx(cx,H-M.b+18,d.anio,{a:'middle',fs:11.5}));
+    const hit=el('rect',{x:M.l+bw*i,y:M.t,width:bw,height:H-M.t-M.b,class:'hit'});
+    hit.addEventListener('mousemove',e=>showTip(e,`<div class="tt">${d.anio}</div>`+rws([
+      ['Tramo en dólares', d.usd?usd(d.usd):'—'],
+      ['Tramo en pesos (bruto)', d.bruto?usd(d.bruto):'—'],
+      ['Efecto devaluación', d.dev?usd(d.dev):'—'],
+      ['Tramo en pesos (neto)', d.copUsd?usd(d.copUsd):'—'],
+      ['TOTAL DEL AÑO', d.total?usd(d.total):'sin rendimiento']])));
+    hit.addEventListener('mouseleave',hideTip);
+    s.appendChild(hit);
+  });
+  s.appendChild(el('line',{x1:M.l,x2:W-M.r,y1:H-M.b,y2:H-M.b,stroke:'#9AA3B0','stroke-width':1}));
+}
+
+function chartTasasTramo(){
+  const h=document.getElementById('c-tasas-tramo'); if(!h) return;
+  const t=F.tasas, W=860,H=260,M={t:18,r:24,b:40,l:56};
+  const s=box(h,W,H);
+  const max=.16, y=v=>H-M.b-(v/max)*(H-M.t-M.b);
+  const x=i=>M.l+((W-M.l-M.r)/(t.anios.length-1))*i;
+  gridY(s,M,W,y,max,v=>(v*100).toFixed(0)+'%',8);
+  /* las cuatro convergen al final: se rotulan a la izquierda */
+  const line=(arr,col,lb,dash,dy)=>{
+    const a={d:arr.map((v,i)=>(i?'L':'M')+x(i)+' '+y(v)).join(' '),fill:'none',stroke:col,
+             'stroke-width':dash?2:2.5,'stroke-linejoin':'round','stroke-linecap':'round'};
+    if(dash) a['stroke-dasharray']='6 4';
+    s.appendChild(el('path',a));
+    if(!dash) arr.forEach((v,i)=>s.appendChild(el('circle',{cx:x(i),cy:y(v),r:3.4,fill:col,
+      stroke:'#fff','stroke-width':1.8})));
+    s.appendChild(tx(x(0)+11,y(arr[0])+dy,lb,{fs:11.5,w:600,fill:col,halo:true}));
+  };
+  line(t.tramoCop,'#B0A99C','TES a secas, en pesos',true,-9);
+  line(t.mezclada,'#7C8B9C','Tasa mezclada del fondo',true,-9);
+  line(t.tramoCopUsd,'#2E7D55','Tramo en pesos, medido en dólares',false,-9);
+  line(t.tramoUsd,'#0D3B70','Tramo en dólares',false,17);
+  t.anios.forEach((a,i)=>{
+    s.appendChild(tx(x(i),H-M.b+18,a,{a:'middle',fs:11.5}));
+    const bw=(W-M.l-M.r)/(t.anios.length-1);
+    const hit=el('rect',{x:x(i)-bw/2,y:M.t,width:bw,height:H-M.t-M.b,class:'hit'});
+    hit.addEventListener('mousemove',e=>showTip(e,`<div class="tt">${a}</div>`+rws([
+      ['Tramo en dólares',pct(t.tramoUsd[i],2)],
+      ['Tramo en pesos, en pesos',pct(t.tramoCop[i],2)],
+      ['Tramo en pesos, en dólares',pct(t.tramoCopUsd[i],2)],
+      ['Tasa mezclada del fondo',pct(t.mezclada[i],2)],
+      ['TRM del año',n0.format(t.trm[i])]])));
+    hit.addEventListener('mouseleave',hideTip);
+    s.appendChild(hit);
+  });
+  s.appendChild(el('line',{x1:M.l,x2:W-M.r,y1:H-M.b,y2:H-M.b,stroke:'#9AA3B0','stroke-width':1}));
+}
+
+const CONTRATO = `<span class="c">GET /api/fondo  →  200</span>
+{
+  <span class="k">"meta"</span>: {
+    <span class="k">"objetivoUSD"</span>: 50000000,
+    <span class="k">"umbralRecompraUSD"</span>: 30000000,
+    <span class="k">"topeRecompraAnualUSD"</span>: 5000000,
+    <span class="k">"barridoEstandar"</span>: 0.30,
+    <span class="k">"composicion"</span>: { <span class="k">"usd"</span>: 0.70, <span class="k">"cop"</span>: 0.30 }
+  },
+  <span class="k">"periodicidad"</span>: <span class="s">"quincenal"</span>,      <span class="c">// o "semanal" | "mensual"</span>
+  <span class="k">"proximoCorte"</span>: <span class="s">"2026-09-25"</span>,
+  <span class="k">"cortes"</span>: [                     <span class="c">// uno por corte, del más antiguo al más nuevo</span>
+    {
+      <span class="k">"fecha"</span>: <span class="s">"2026-09-11"</span>,
+      <span class="k">"saldoCOP"</span>: 10000.0,        <span class="c">// COP millones</span>
+      <span class="k">"entra"</span>: 760.4,             <span class="c">// aportes del periodo</span>
+      <span class="k">"rendimiento"</span>: 0,
+      <span class="k">"trm"</span>: 3200.00,
+      <span class="k">"aportes"</span>: { <span class="s">"Autecos"</span>: 621.4, <span class="s">"Grupo SI3"</span>: 43.2, <span class="c">... }</span>
+    }
+  ],
+  <span class="k">"proyeccion"</span>: [                 <span class="c">// del modelo de fondeo, en USD</span>
+    { <span class="k">"anio"</span>: 2026, <span class="k">"aportes"</span>: 9895120, <span class="k">"rendimiento"</span>: 0,
+      <span class="k">"saldo"</span>: 9895120, <span class="k">"b3"</span>: 9895120, <span class="k">"b2"</span>: 0, <span class="k">"b1"</span>: 0 }
+  ],
+  <span class="k">"aportePlan"</span>: [ { <span class="k">"compania"</span>: <span class="s">"Autecos"</span>, <span class="k">"copMM"</span>: 92268.2, <span class="k">"pct"</span>: 0.6679,
+                   <span class="k">"factor"</span>: 1.00 } ],        <span class="c">// factor de credibilidad de la proyección</span>
+  <span class="k">"credNiveles"</span>: [1, 0.85, 0.7, 0.5, 0],
+  <span class="k">"credibilidad"</span>: [ { <span class="k">"compania"</span>: <span class="s">"Autecos"</span>, <span class="k">"factor"</span>: 1.00,
+                     <span class="k">"v"</span>: [53438492, 51748159, 50057825, 47804048, 42169604],
+                     <span class="k">"costo"</span>: -3380666 } ],
+  <span class="k">"credGlobal"</span>: [ { <span class="k">"factor"</span>: 0.85, <span class="k">"saldo"</span>: 51229135, <span class="k">"meta"</span>: 1.0246, <span class="k">"ok"</span>: 1 } ],
+  <span class="k">"bolsillos"</span>:  [ { <span class="k">"n"</span>: 3, <span class="k">"nombre"</span>: <span class="s">"Máxima liquidez"</span>, <span class="k">"topeUSD"</span>: 15000000, <span class="k">"pct"</span>: 0.30 } ],
+  <span class="k">"tasas"</span>: { <span class="k">"anios"</span>: [...], <span class="k">"tesoroUSA"</span>: [...], <span class="k">"tesCol"</span>: [...], <span class="k">"spread"</span>: 0.01,
+              <span class="k">"tramoUsd"</span>: [...], <span class="k">"tramoCop"</span>: [...], <span class="k">"tramoCopUsd"</span>: [...],
+              <span class="k">"mezclada"</span>: [...], <span class="k">"devaluacion"</span>: 0.0347, <span class="k">"trm"</span>: [...] },
+  <span class="k">"rendimientos"</span>: [               <span class="c">// uno por año, en USD salvo "cop" que va en pesos</span>
+    { <span class="k">"anio"</span>: 2027, <span class="k">"usd"</span>: 435974, <span class="k">"cop"</span>: 1533717430, <span class="k">"copUsd"</span>: 199754,
+      <span class="k">"bruto"</span>: 418359, <span class="k">"dev"</span>: -218606, <span class="k">"total"</span>: 635728 }
+  ],
+  <span class="k">"usuario"</span>: { <span class="k">"nombre"</span>: <span class="s">"Juan Pablo"</span>, <span class="k">"iniciales"</span>: <span class="s">"JP"</span> }
+}`;
+
+/* =====================================================================
+   ARRANQUE
+   ===================================================================== */
+(async function(){
+  try{
+    F = await API.getFondo();
+    render();
+    drawCharts();
+    addEventListener('resize',()=>{clearTimeout(window._rz);
+      window._rz=setTimeout(drawCharts,180);});
+  }catch(err){
+    document.querySelector('main').innerHTML=
+      '<div class="card"><h3>No se pudo cargar el fondo</h3>'+
+      '<p class="sub">Intente de nuevo en unos minutos o avise a tesorería.</p></div>';
+    console.error(err);
+  }
+})();
+</script>
+</body>
+</html>
