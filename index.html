@@ -342,7 +342,7 @@ footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;paddi
 
     <div class="card">
       <figure>
-        <h3>Hacia dónde va</h3>
+        <h3>Proyección del fondo</h3>
         <figcaption>Proyección del saldo al cierre de cada año, contra la meta de USD 50 millones.</figcaption>
         <div id="c-proy"></div>
         <div class="legend">
@@ -367,7 +367,7 @@ footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;paddi
     </div>
 
     <div class="card">
-      <h3>Los supuestos macro detrás de la proyección</h3>
+      <h3>Supuestos macroeconómicos detrás de la proyección</h3>
       <p class="sub">La proyección está en dólares, así que la TRM decide cuánto vale en dólares
         cada peso que entra. La curva se ancla en <b>3.200 para 2026</b>, por instrucción de la
         dirección financiera, y en <b>3.309 para 2027</b>, del marco macroeconómico del
@@ -430,7 +430,7 @@ footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;paddi
 
     <div class="card">
       <figure>
-        <h3>Dónde está la caja</h3>
+        <h3>Distribución de la caja</h3>
         <figcaption>Caja operativa por compañía, ya descontado el Rainy Day Fund,
           en COP millones.</figcaption>
         <div id="c-real"></div>
@@ -446,7 +446,7 @@ footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;paddi
 
     <div class="card">
       <h3>Cómo se actualiza</h3>
-      <p class="sub">Cada viernes en la mañana un proceso lee el archivo de saldos de la carpeta
+      <p class="sub">Cada lunes en la mañana un proceso lee el archivo de saldos de la carpeta
         de tesorería en SharePoint, valida que el día esté cargado y que las cifras cuadren, y
         reemplaza los números de esta pestaña. Si algo no cuadra, no publica y avisa: la
         pestaña se queda mostrando el último corte bueno.</p>
@@ -468,7 +468,7 @@ footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;paddi
   <!-- ============ COMPAÑÍAS ============ -->
   <section class="view" id="v-companias">
     <div class="card">
-      <h3>Qué ha puesto cada compañía</h3>
+      <h3>Aporte por compañía</h3>
       <p class="sub">Acumulado de todos los cortes, en COP millones. Esto es plata ya
         recibida, sin factores ni ajustes.</p>
       <div id="co-acum" style="margin-top:14px"></div>
@@ -486,7 +486,7 @@ footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;paddi
     </div>
 
     <div class="card">
-      <h3>Lo que aportará cada una hasta 2033</h3>
+      <h3>Proyección de aportes hasta 2033</h3>
       <p class="sub">Proyección acumulada del plan completo, en COP millones, ya con el factor
         de credibilidad aplicado.</p>
       <div class="tw"><table>
@@ -498,7 +498,7 @@ footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;paddi
     </div>
 
     <div class="card">
-      <h3>Qué tanto le creemos a cada proyección</h3>
+      <h3>Factor de credibilidad por compañía</h3>
       <p class="sub">Cada compañía tiene un factor que recorta su flujo de caja proyectado.
         Hoy solo Blue Mobility está recortada.</p>
       <div class="tw"><table>
@@ -510,7 +510,7 @@ footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;paddi
     </div>
 
     <div class="card">
-      <h3>Si no le creyéramos a ninguna</h3>
+      <h3>Punto de quiebre del plan</h3>
       <p class="sub">Hasta dónde aguanta el plan si la caja proyectada no se cumple.</p>
       <div class="tw"><table>
         <thead><tr><th>Factor aplicado a las siete</th><th>Fondo al cierre de 2033</th>
@@ -534,12 +534,12 @@ footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;paddi
         <p class="mini" id="rd-tot-n"></p>
       </div>
       <div class="card">
-        <p class="sub">Lo pone el tramo en dólares</p>
+        <p class="sub">Tramo en dólares</p>
         <div class="stat" id="rd-usd"></div>
         <p class="mini" id="rd-usd-n"></p>
       </div>
       <div class="card">
-        <p class="sub">Lo pone el tramo en pesos</p>
+        <p class="sub">Tramo en pesos</p>
         <div class="stat" id="rd-cop"></div>
         <p class="mini" id="rd-cop-n"></p>
       </div>
@@ -567,7 +567,7 @@ footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;paddi
 
     <div class="card">
       <figure>
-        <h3>Cuánto rinde el fondo cada año</h3>
+        <h3>Rendimiento anual proyectado</h3>
         <figcaption>En dólares, separado por tramo. Crece año a año porque el fondo es cada
           vez más grande, no porque las tasas suban: de hecho bajan.</figcaption>
         <div id="c-rend"></div>
@@ -587,12 +587,12 @@ footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;paddi
 
     <div class="card">
       <h3>Desglose año por año</h3>
-      <p class="sub">Todo el detalle del cálculo, para quien lo quiera revisar.</p>
+      <p class="sub">Detalle del cálculo, año por año.</p>
       <div class="tw"><table>
         <thead><tr>
           <th>Año</th><th>Tasa tramo USD</th><th>Tasa tramo COP</th>
-          <th>Rinde el tramo USD</th><th>Rinde el tramo COP (COP mm)</th>
-          <th>Eso en USD, antes de devaluación</th><th>Efecto devaluación</th>
+          <th>Rendimiento tramo USD</th><th>Rendimiento tramo COP (COP mm)</th>
+          <th>Equivalente en USD, antes de devaluación</th><th>Efecto devaluación</th>
           <th>Tramo COP neto (USD)</th><th>Total del año</th>
         </tr></thead>
         <tbody id="t-rend"></tbody>
@@ -601,7 +601,7 @@ footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;paddi
     </div>
 
     <div class="card">
-      <h3>Lo que hay que entender de esta tabla</h3>
+      <h3>Cómo leer la tabla</h3>
       <p class="sub" style="font-size:13.5px;color:var(--ink-2);margin-top:10px" id="rd-txt"></p>
       <details class="exp"><summary>¿Entonces conviene o no tener plata en pesos?</summary>
         <p>Conviene. Aunque la devaluación se coma una parte, el TES paga tanto más que el
@@ -627,7 +627,7 @@ footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;paddi
 
     <div class="card">
       <figure>
-        <h3>Lo que gana el fondo sobre esas tasas</h3>
+        <h3>Tasa efectiva por tramo</h3>
         <figcaption>La del tramo en pesos ya está medida en dólares, con la devaluación
           descontada, para que las dos sean comparables.</figcaption>
         <div id="c-tasas-tramo"></div>
@@ -635,7 +635,7 @@ footer button{background:none;border:0;color:var(--tan-ink);font-size:11px;paddi
           <span><i class="sw ln" style="background:var(--blue)"></i>Tramo en dólares</span>
           <span><i class="sw ln" style="background:var(--green)"></i>Tramo en pesos, en dólares</span>
           <span><i class="sw ln" style="background:#7C8B9C"></i>Tasa mezclada del fondo</span>
-          <span><i class="sw ln" style="background:#B0A99C"></i>TES a secas, antes de devaluación</span>
+          <span><i class="sw ln" style="background:#B0A99C"></i>TES nominal, antes de devaluación</span>
         </div>
       </figure>
     </div>
@@ -761,7 +761,7 @@ const MOCK = {
          barridoEstandar:0.30, composicion:{usd:0.70, cop:0.30},
          horizonte:{desde:2026, hasta:2033} },
   periodicidad:"semanal",
-  proximoCorte:"2026-09-25",   // viernes siguiente
+  proximoCorte:"2026-10-05",   // lunes siguiente
   trmHoy: TRM_HOY,
   cortes: CORTES_REALES,
   /* ---------------------------------------------------------------------
@@ -900,7 +900,7 @@ const MOCK = {
 const API = {
   /* ---------------------------------------------------------------------
      Lee "fondo.json", el archivo que el flujo de Power Automate reescribe
-     cada viernes en la misma carpeta de SharePoint que esta página.
+     cada lunes en la misma carpeta de SharePoint que esta página.
      Si el archivo todavía no existe, o falla la lectura, la página se
      queda con los datos embebidos y lo dice en pantalla. Nunca queda en
      blanco ni muestra una cifra a medias.
@@ -960,6 +960,12 @@ function fusiona(base, j){
     for(let i=1;i<F.cortes.length;i++)
       F.cortes[i].entra = +(F.cortes[i].saldoCOP - F.cortes[i-1].saldoCOP).toFixed(1);
   }
+
+  /* La TRM del corte sale del mismo archivo de tesorería, no de un número
+     escrito a mano. Si el archivo no la trae, se queda la embebida. */
+  if(typeof j.trm === 'number' && j.trm > 0)
+    F.trmHoy = { valor: j.trm, fecha: j.fecha };
+
   return F;
 }
 
@@ -1039,7 +1045,7 @@ function pintaBanner(){
       + 'lleve meses corriendo. No las use para nada.'
     : (API.origen==='fondo.json'
         ? '<b>Conectada.</b> Los saldos vienen de <code>fondo.json</code>, que el proceso '
-          + 'reescribe cada viernes desde el archivo de tesorería. Último corte: '
+          + 'reescribe cada lunes desde el archivo de tesorería. Último corte: '
           + fechaL(F.real.fecha)+'. La proyección 2026–2033 sale del modelo.'
           + (F.real.alertas && F.real.alertas.length
               ? ' <b style="color:#A8452C">Avisos del último proceso:</b> '+F.real.alertas.join(' ')
@@ -1075,11 +1081,11 @@ function render(){
   document.getElementById('h-usd').textContent='equivale a '+usd(saldoUSD);
   document.getElementById('h-trm').textContent=n1.format(trmHoy)
     + (F.trmHoy ? ' · '+fecha(F.trmHoy.fecha) : '');
-  document.getElementById('h-trm').parentNode.firstChild.textContent='TRM de hoy ';
+  document.getElementById('h-trm').parentNode.firstChild.textContent='TRM del corte ';
   (function(){
     const d=new Date(last.fecha+'T12:00:00');
     const hoy=new Date();
-    do { d.setDate(d.getDate()+1); } while (d.getDay()!==5);   // 5 = viernes
+    do { d.setDate(d.getDate()+1); } while (d.getDay()!==1);   // 1 = lunes
     while (d < hoy) d.setDate(d.getDate()+7);                  // nunca una fecha pasada
     document.getElementById('h-next').textContent =
       d.getDate()+' '+MES[d.getMonth()]+' '+d.getFullYear();
@@ -1165,7 +1171,7 @@ function render(){
     :'con el plan actual no se alcanza dentro del horizonte';
 
   document.getElementById('i-mapa').innerHTML=[
-    ['proyeccion','Proyección','Año por año hasta 2033 y los supuestos macro detrás'],
+    ['proyeccion','Proyección','Año por año hasta 2033 y los supuestos macroeconómicos'],
     ['real','Real','Saldo del fondo y caja de cada compañía, cuenta por cuenta'],
     ['companias','Compañías','Cuánto pone cada una y qué pasa si alguna no cumple'],
     ['rendimientos','Rendimientos','En qué moneda está, a qué tasa rinde y cuánto produce'],
@@ -1642,7 +1648,7 @@ function chartTasasTramo(){
       stroke:'#fff','stroke-width':1.8})));
     s.appendChild(tx(x(0)+11,y(arr[0])+dy,lb,{fs:11.5,w:600,fill:col,halo:true}));
   };
-  line(t.tramoCop,'#B0A99C','TES a secas, en pesos',true,-9);
+  line(t.tramoCop,'#B0A99C','TES nominal, en pesos',true,-9);
   line(t.mezclada,'#7C8B9C','Tasa mezclada del fondo',true,-9);
   line(t.tramoCopUsd,'#2E7D55','Tramo en pesos, medido en dólares',false,-9);
   line(t.tramoUsd,'#0D3B70','Tramo en dólares',false,17);
